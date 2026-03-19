@@ -66,7 +66,7 @@ Complete listing of all tryAGI SDKs organized by category.
 | Forem | [tryAGI.Forem](https://www.nuget.org/packages/tryAGI.Forem) | [GitHub](https://github.com/tryAGI/Forem) | [Docs](https://tryagi.github.io/Forem/) |
 | Instill | [tryAGI.Instill](https://www.nuget.org/packages/tryAGI.Instill) | [GitHub](https://github.com/tryAGI/Instill) | [Docs](https://tryagi.github.io/Instill/) |
 | LangSmith | [tryAGI.LangSmith](https://www.nuget.org/packages/tryAGI.LangSmith) | [GitHub](https://github.com/tryAGI/LangSmith) | [Docs](https://tryagi.github.io/LangSmith/) |
-| Mystic | [tryAGI.Mystic](https://www.nuget.org/packages/tryAGI.Mystic) | [GitHub](https://github.com/tryAGI/Mystic) | [Docs](https://tryagi.github.io/Mystic/) |
+
 
 ## LangChain Ecosystem
 
