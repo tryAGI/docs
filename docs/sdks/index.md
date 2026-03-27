@@ -41,6 +41,12 @@ Complete listing of all tryAGI SDKs organized by category.
 | ElevenLabs | [tryAGI.ElevenLabs](https://www.nuget.org/packages/tryAGI.ElevenLabs) | [GitHub](https://github.com/tryAGI/ElevenLabs) | [Docs](https://tryagi.github.io/ElevenLabs/) | `ISpeechToTextClient` |
 | AssemblyAI | [tryAGI.AssemblyAI](https://www.nuget.org/packages/tryAGI.AssemblyAI) | [GitHub](https://github.com/tryAGI/AssemblyAI) | [Docs](https://tryagi.github.io/AssemblyAI/) | `ISpeechToTextClient` |
 
+## Translation / NLP
+
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| DeepL | [DeepL](https://www.nuget.org/packages/DeepL) | [GitHub](https://github.com/tryAGI/DeepL) | [Docs](https://tryagi.github.io/DeepL/) | `AIFunction` tools |
+
 ## Search / RAG / Embeddings
 
 | SDK | NuGet | GitHub | Docs | MEAI |
