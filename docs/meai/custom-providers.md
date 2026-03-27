@@ -28,8 +28,10 @@ dotnet add package tryAGI.OpenAI
 | Cohere | `CustomProviders.Cohere(key)` | `command-r-08-2024` |
 | Nebius | `CustomProviders.Nebius(key)` | `Qwen/Qwen2.5-72B-Instruct` |
 | Hyperbolic | `CustomProviders.Hyperbolic(key)` | `Llama-3.3-70B-Instruct` |
+| Nvidia | `CustomProviders.Nvidia(key)` | *(user-selected)* |
 | GitHub Models | `CustomProviders.GitHubModels(token)` | `gpt-4o` |
 | Ollama | `CustomProviders.Ollama()` | `llama3.2` |
+| Ollama Cloud | `CustomProviders.OllamaCloud(key)` | `llama3.2` |
 | LM Studio | `CustomProviders.LmStudio()` | *(user-selected)* |
 
 ## Usage

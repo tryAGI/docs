@@ -32,7 +32,7 @@ All tryAGI SDKs with MEAI support use **Microsoft.Extensions.AI.Abstractions 10.
 | [Tavily](https://tryagi.github.io/Tavily/guides/meai/) | - | - | - | Y | No |
 | [Phoenix](https://tryagi.github.io/Phoenix/guides/meai/) | - | - | - | Y | No |
 
-Additionally, **19 OpenAI-compatible providers** get MEAI support via [`CustomProviders`](custom-providers.md) in `tryAGI.OpenAI`.
+Additionally, **21 OpenAI-compatible providers** get MEAI support via [`CustomProviders`](custom-providers.md) in `tryAGI.OpenAI`.
 
 ## Interfaces
 

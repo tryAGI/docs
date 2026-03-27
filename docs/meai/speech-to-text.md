@@ -1,18 +1,20 @@
 # ISpeechToTextClient Feature Matrix
 
-The `ISpeechToTextClient` interface provides a unified API for speech-to-text transcription.
+The `ISpeechToTextClient` interface provides a unified API for speech-to-text transcription across 6 providers.
 
 ## Feature comparison
 
-| Feature | Reka | ElevenLabs | AssemblyAI |
-|---------|:-:|:-:|:-:|
-| File transcription | Y | Y | Y |
-| URL transcription | Y | - | Y |
-| Streaming | -[^1] | Y | - |
-| Translation | Y | - | - |
-| Timestamps | Y | Y | Y |
+| Feature | Reka | ElevenLabs | AssemblyAI | Deepgram | Gladia | Cartesia |
+|---------|:-:|:-:|:-:|:-:|:-:|:-:|
+| File transcription | Y | Y | Y | -[^2] | Y | Y |
+| URL transcription | Y | - | Y | Y | - | - |
+| Streaming | -[^1] | Y | - | Y | - | - |
+| Translation | Y | - | - | - | - | - |
+| Timestamps | Y | Y | Y | Y | Y | Y |
+| Languages | 20+ | 29 | 100+ | 30+ | 100+ | 115+ |
 
 [^1]: Reka delegates to non-streaming due to API limitations.
+[^2]: Deepgram `GetTextAsync` requires a URL via `RawRepresentationFactory`; `GetStreamingTextAsync` accepts audio streams via WebSocket.
 
 ## Universal code example
 
@@ -50,6 +52,27 @@ Console.WriteLine(result.Text);
         .AsSpeechToTextClient();
     ```
 
+=== "Deepgram"
+
+    ```csharp
+    ISpeechToTextClient client = new DeepgramClient(apiKey)
+        .AsSpeechToTextClient();
+    ```
+
+=== "Gladia"
+
+    ```csharp
+    ISpeechToTextClient client = new GladiaClient(apiKey)
+        .AsSpeechToTextClient();
+    ```
+
+=== "Cartesia"
+
+    ```csharp
+    ISpeechToTextClient client = new CartesiaClient(apiKey)
+        .AsSpeechToTextClient();
+    ```
+
 ## Per-SDK documentation
 
 | SDK | Documentation |
@@ -57,3 +80,6 @@ Console.WriteLine(result.Text);
 | Reka | [tryagi.github.io/Reka/guides/meai/](https://tryagi.github.io/Reka/guides/meai/) |
 | ElevenLabs | [tryagi.github.io/ElevenLabs/guides/meai/](https://tryagi.github.io/ElevenLabs/guides/meai/) |
 | AssemblyAI | [tryagi.github.io/AssemblyAI/guides/meai/](https://tryagi.github.io/AssemblyAI/guides/meai/) |
+| Deepgram | [tryagi.github.io/Deepgram/guides/meai/](https://tryagi.github.io/Deepgram/guides/meai/) |
+| Gladia | [tryagi.github.io/Gladia/guides/meai/](https://tryagi.github.io/Gladia/guides/meai/) |
+| Cartesia | [tryagi.github.io/Cartesia/guides/meai/](https://tryagi.github.io/Cartesia/guides/meai/) |
