@@ -51,8 +51,11 @@ Complete listing of all tryAGI SDKs organized by category.
 
 | SDK | NuGet | GitHub | Docs | MEAI |
 |-----|-------|--------|------|------|
+| Exa | [Exa](https://www.nuget.org/packages/Exa) | [GitHub](https://github.com/tryAGI/Exa) | [Docs](https://tryagi.github.io/Exa/) | `AIFunction` tools |
+| Serper | [Serper](https://www.nuget.org/packages/Serper) | [GitHub](https://github.com/tryAGI/Serper) | [Docs](https://tryagi.github.io/Serper/) | `AIFunction` tools |
 | Jina | [tryAGI.Jina](https://www.nuget.org/packages/tryAGI.Jina) | [GitHub](https://github.com/tryAGI/Jina) | [Docs](https://tryagi.github.io/Jina/) | `IEmbeddingGenerator` |
 | VoyageAI | [tryAGI.VoyageAI](https://www.nuget.org/packages/tryAGI.VoyageAI) | [GitHub](https://github.com/tryAGI/VoyageAI) | [Docs](https://tryagi.github.io/VoyageAI/) | `IEmbeddingGenerator` |
+| TwelveLabs | [TwelveLabs](https://www.nuget.org/packages/TwelveLabs) | [GitHub](https://github.com/tryAGI/TwelveLabs) | [Docs](https://tryagi.github.io/TwelveLabs/) | `IEmbeddingGenerator` |
 | Tavily | [tryAGI.Tavily](https://www.nuget.org/packages/tryAGI.Tavily) | [GitHub](https://github.com/tryAGI/Tavily) | [Docs](https://tryagi.github.io/Tavily/) | `AIFunction` tools |
 | Vectara | [tryAGI.Vectara](https://www.nuget.org/packages/tryAGI.Vectara) | [GitHub](https://github.com/tryAGI/Vectara) | [Docs](https://tryagi.github.io/Vectara/) | - |
 
