@@ -1,6 +1,6 @@
 # SDK Catalog
 
-Complete listing of all tryAGI SDKs organized by category.
+**50+ SDKs** for AI/ML services, all auto-generated from OpenAPI specs via [AutoSDK](https://github.com/HavenDV/AutoSDK). Each SDK targets `net10.0`, supports AOT/trimming, and is published to NuGet.
 
 ## LLM / Text Generation
 
@@ -18,6 +18,7 @@ Complete listing of all tryAGI SDKs organized by category.
 | HuggingFace | [tryAGI.HuggingFace](https://www.nuget.org/packages/tryAGI.HuggingFace) | [GitHub](https://github.com/tryAGI/HuggingFace) | [Docs](https://tryagi.github.io/HuggingFace/) | `IChatClient` `IEmbeddingGenerator` |
 | Writer | [tryAGI.Writer](https://www.nuget.org/packages/tryAGI.Writer) | [GitHub](https://github.com/tryAGI/Writer) | [Docs](https://tryagi.github.io/Writer/) | `IChatClient` |
 | Xai | [tryAGI.Xai](https://www.nuget.org/packages/tryAGI.Xai) | [GitHub](https://github.com/tryAGI/Xai) | [Docs](https://tryagi.github.io/Xai/) | via CustomProviders |
+| Groq | [tryAGI.Groq](https://www.nuget.org/packages/tryAGI.Groq) | [GitHub](https://github.com/tryAGI/Groq) | [Docs](https://tryagi.github.io/Groq/) | via CustomProviders |
 | DeepInfra | [tryAGI.DeepInfra](https://www.nuget.org/packages/tryAGI.DeepInfra) | [GitHub](https://github.com/tryAGI/DeepInfra) | [Docs](https://tryagi.github.io/DeepInfra/) | via CustomProviders |
 
 ## Image / Video / 3D Generation
