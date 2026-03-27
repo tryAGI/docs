@@ -36,6 +36,8 @@
 | StabilityAI | [tryAGI.StabilityAI](https://www.nuget.org/packages/tryAGI.StabilityAI) | [GitHub](https://github.com/tryAGI/StabilityAI) | [Docs](https://tryagi.github.io/StabilityAI/) |
 | Tripo | [tryAGI.Tripo](https://www.nuget.org/packages/tryAGI.Tripo) | [GitHub](https://github.com/tryAGI/Tripo) | [Docs](https://tryagi.github.io/Tripo/) |
 | BlackForestLabs | [BlackForestLabs](https://www.nuget.org/packages/BlackForestLabs) | [GitHub](https://github.com/tryAGI/BlackForestLabs) | [Docs](https://tryagi.github.io/BlackForestLabs/) |
+| Meshy | [Meshy](https://www.nuget.org/packages/Meshy) | [GitHub](https://github.com/tryAGI/Meshy) | [Docs](https://tryagi.github.io/Meshy/) |
+| Meshcapade | [Meshcapade](https://www.nuget.org/packages/Meshcapade) | [GitHub](https://github.com/tryAGI/Meshcapade) | [Docs](https://tryagi.github.io/Meshcapade/) |
 | Fal | [tryAGI.Fal](https://www.nuget.org/packages/tryAGI.Fal) | [GitHub](https://github.com/tryAGI/Fal) | [Docs](https://tryagi.github.io/Fal/) |
 
 ## Audio / Speech

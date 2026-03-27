@@ -13,6 +13,7 @@ nav:
   - IEmbeddingGenerator: meai/embedding-generator.md
   - ISpeechToTextClient: meai/speech-to-text.md
   - CustomProviders: meai/custom-providers.md
+  - AIFunction Tools: meai/aifunction-tools.md
   - Namespace Conflicts: meai/namespace-conflict.md
 - SDK Catalog: sdks/index.md
 
