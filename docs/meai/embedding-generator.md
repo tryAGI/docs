@@ -4,12 +4,12 @@ The `IEmbeddingGenerator<string, Embedding<float>>` interface provides a unified
 
 ## Feature comparison
 
-| Feature | Ollama | OpenAI | Gemini | Cohere | Together | HuggingFace | Jina | VoyageAI |
-|---------|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Single input | Y | Y | Y | Y | Y | Y | Y | Y |
-| Batch input | Y | Y | Y | Y | Y | Y | Y | Y |
-| Custom dimensions | Y | Y | - | - | - | Y | Y | Y |
-| Token usage | Y | Y | - | - | - | Y | Y | Y |
+| Feature | Ollama | OpenAI | Gemini | Cohere | Together | HuggingFace | Jina | VoyageAI | TwelveLabs | Mixedbread |
+|---------|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Single input | Y | Y | Y | Y | Y | Y | Y | Y | Y | Y |
+| Batch input | Y | Y | Y | Y | Y | Y | Y | Y | Y | Y |
+| Custom dimensions | Y | Y | - | - | - | Y | Y | Y | - | Y |
+| Token usage | Y | Y | - | - | - | Y | Y | Y | - | Y |
 
 ## Universal code example
 
@@ -64,6 +64,23 @@ var embeddings = await generator.GenerateAsync([
             .AsEmbeddingGenerator("voyage-3");
     ```
 
+=== "TwelveLabs"
+
+    ```csharp
+    // Direct cast — TwelveLabsClient implements IEmbeddingGenerator
+    IEmbeddingGenerator<string, Embedding<float>> generator =
+        new TwelveLabsClient(apiKey);
+    ```
+
+=== "Mixedbread"
+
+    ```csharp
+    // Note: namespace conflict — use Meai alias
+    using Meai = Microsoft.Extensions.AI;
+    Meai.IEmbeddingGenerator<string, Meai.Embedding<float>> generator =
+        new MixedbreadClient(apiKey);
+    ```
+
 ## Per-SDK documentation
 
 | SDK | Documentation |
@@ -76,3 +93,5 @@ var embeddings = await generator.GenerateAsync([
 | HuggingFace | [tryagi.github.io/HuggingFace/guides/meai/](https://tryagi.github.io/HuggingFace/guides/meai/) |
 | Jina | [tryagi.github.io/Jina/guides/meai/](https://tryagi.github.io/Jina/guides/meai/) |
 | VoyageAI | [tryagi.github.io/VoyageAI/guides/meai/](https://tryagi.github.io/VoyageAI/guides/meai/) |
+| TwelveLabs | [tryagi.github.io/TwelveLabs/guides/meai/](https://tryagi.github.io/TwelveLabs/guides/meai/) |
+| Mixedbread | [tryagi.github.io/Mixedbread/guides/meai/](https://tryagi.github.io/Mixedbread/guides/meai/) |

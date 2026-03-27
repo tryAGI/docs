@@ -55,22 +55,24 @@ Console.WriteLine(result.Text);
 === "Deepgram"
 
     ```csharp
-    ISpeechToTextClient client = new DeepgramClient(apiKey)
-        .AsSpeechToTextClient();
+    // Direct cast — DeepgramClient implements ISpeechToTextClient
+    // GetTextAsync requires audio URL via RawRepresentationFactory
+    // GetStreamingTextAsync accepts audio streams via WebSocket
+    ISpeechToTextClient client = new DeepgramClient(apiKey);
     ```
 
 === "Gladia"
 
     ```csharp
-    ISpeechToTextClient client = new GladiaClient(apiKey)
-        .AsSpeechToTextClient();
+    // Direct cast — GladiaClient implements ISpeechToTextClient
+    ISpeechToTextClient client = new GladiaClient(apiKey);
     ```
 
 === "Cartesia"
 
     ```csharp
-    ISpeechToTextClient client = new CartesiaClient(apiKey)
-        .AsSpeechToTextClient();
+    // Direct cast — CartesiaClient implements ISpeechToTextClient
+    ISpeechToTextClient client = new CartesiaClient(apiKey);
     ```
 
 ## Per-SDK documentation

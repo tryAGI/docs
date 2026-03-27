@@ -4,17 +4,17 @@ The `IChatClient` interface provides a unified API for chat completions across a
 
 ## Feature comparison
 
-| Feature | Anthropic | Ollama | OpenAI | Gemini | Mistral | Cohere | Together | AI21 | Reka | HuggingFace |
-|---------|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Text | Y | Y | Y | Y | Y | Y | Y | Y | Y | Y |
-| Streaming | Y | Y | Y | Y | Y | ~[^1] | Y | Y | Y | Y |
-| Tool calling | Y | Y | Y | Y | Y | Y | Y | Y | Y[^2] | Y |
-| Images | Y | Y | Y | Y | Y | - | - | - | Y | - |
-| PDFs | Y | - | - | - | - | - | - | - | Y | - |
-| Audio/Video | - | - | - | - | - | - | - | - | Y | - |
-| Thinking | Y | Y | - | Y | - | - | - | - | - | - |
-| Structured output | - | - | Y | - | - | - | - | - | Y | - |
-| Reasoning | - | - | - | - | - | - | Y | Y | - | - |
+| Feature | Anthropic | Ollama | OpenAI | Gemini | Mistral | Cohere | Together | AI21 | Reka | HuggingFace | Writer |
+|---------|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Text | Y | Y | Y | Y | Y | Y | Y | Y | Y | Y | Y |
+| Streaming | Y | Y | Y | Y | Y | ~[^1] | Y | Y | Y | Y | Y |
+| Tool calling | Y | Y | Y | Y | Y | Y | Y | Y | Y[^2] | Y | Y |
+| Images | Y | Y | Y | Y | Y | - | - | - | Y | - | - |
+| PDFs | Y | - | - | - | - | - | - | - | Y | - | - |
+| Audio/Video | - | - | - | - | - | - | - | - | Y | - | - |
+| Thinking | Y | Y | - | Y | - | - | - | - | - | - | - |
+| Structured output | - | - | Y | - | - | - | - | - | Y | - | - |
+| Reasoning | - | - | - | - | - | - | Y | Y | - | - | - |
 
 [^1]: Cohere uses simulated streaming (not true SSE).
 [^2]: Reka sends tool results as user text due to API limitations.
@@ -103,6 +103,16 @@ var response = await client.GetResponseAsync(
     options);
 ```
 
+## Provider-specific initialization (continued)
+
+=== "Writer"
+
+    ```csharp
+    // Note: namespace conflict — use Meai alias
+    using Meai = Microsoft.Extensions.AI;
+    Meai.IChatClient client = new WriterClient(apiKey);
+    ```
+
 ## Per-SDK documentation
 
 Each SDK has a detailed MEAI guide with provider-specific examples:
@@ -119,3 +129,4 @@ Each SDK has a detailed MEAI guide with provider-specific examples:
 | AI21 | [tryagi.github.io/AI21/guides/meai/](https://tryagi.github.io/AI21/guides/meai/) |
 | Reka | [tryagi.github.io/Reka/guides/meai/](https://tryagi.github.io/Reka/guides/meai/) |
 | HuggingFace | [tryagi.github.io/HuggingFace/guides/meai/](https://tryagi.github.io/HuggingFace/guides/meai/) |
+| Writer | [tryagi.github.io/Writer/guides/meai/](https://tryagi.github.io/Writer/guides/meai/) |
