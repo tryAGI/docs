@@ -16,6 +16,8 @@ Complete listing of all tryAGI SDKs organized by category.
 | AI21 | [tryAGI.AI21](https://www.nuget.org/packages/tryAGI.AI21) | [GitHub](https://github.com/tryAGI/AI21) | [Docs](https://tryagi.github.io/AI21/) | `IChatClient` |
 | Reka | [tryAGI.Reka](https://www.nuget.org/packages/tryAGI.Reka) | [GitHub](https://github.com/tryAGI/Reka) | [Docs](https://tryagi.github.io/Reka/) | `IChatClient` `ISpeechToTextClient` |
 | HuggingFace | [tryAGI.HuggingFace](https://www.nuget.org/packages/tryAGI.HuggingFace) | [GitHub](https://github.com/tryAGI/HuggingFace) | [Docs](https://tryagi.github.io/HuggingFace/) | `IChatClient` `IEmbeddingGenerator` |
+| Writer | [tryAGI.Writer](https://www.nuget.org/packages/tryAGI.Writer) | [GitHub](https://github.com/tryAGI/Writer) | [Docs](https://tryagi.github.io/Writer/) | `IChatClient` |
+| Xai | [tryAGI.Xai](https://www.nuget.org/packages/tryAGI.Xai) | [GitHub](https://github.com/tryAGI/Xai) | [Docs](https://tryagi.github.io/Xai/) | via CustomProviders |
 | DeepInfra | [tryAGI.DeepInfra](https://www.nuget.org/packages/tryAGI.DeepInfra) | [GitHub](https://github.com/tryAGI/DeepInfra) | [Docs](https://tryagi.github.io/DeepInfra/) | via CustomProviders |
 
 ## Image / Video / 3D Generation
@@ -32,6 +34,7 @@ Complete listing of all tryAGI SDKs organized by category.
 | Runway | [tryAGI.Runway](https://www.nuget.org/packages/tryAGI.Runway) | [GitHub](https://github.com/tryAGI/Runway) | [Docs](https://tryagi.github.io/Runway/) |
 | StabilityAI | [tryAGI.StabilityAI](https://www.nuget.org/packages/tryAGI.StabilityAI) | [GitHub](https://github.com/tryAGI/StabilityAI) | [Docs](https://tryagi.github.io/StabilityAI/) |
 | Tripo | [tryAGI.Tripo](https://www.nuget.org/packages/tryAGI.Tripo) | [GitHub](https://github.com/tryAGI/Tripo) | [Docs](https://tryagi.github.io/Tripo/) |
+| BlackForestLabs | [BlackForestLabs](https://www.nuget.org/packages/BlackForestLabs) | [GitHub](https://github.com/tryAGI/BlackForestLabs) | [Docs](https://tryagi.github.io/BlackForestLabs/) |
 | Fal | [tryAGI.Fal](https://www.nuget.org/packages/tryAGI.Fal) | [GitHub](https://github.com/tryAGI/Fal) | [Docs](https://tryagi.github.io/Fal/) |
 
 ## Audio / Speech
@@ -40,6 +43,10 @@ Complete listing of all tryAGI SDKs organized by category.
 |-----|-------|--------|------|------|
 | ElevenLabs | [tryAGI.ElevenLabs](https://www.nuget.org/packages/tryAGI.ElevenLabs) | [GitHub](https://github.com/tryAGI/ElevenLabs) | [Docs](https://tryagi.github.io/ElevenLabs/) | `ISpeechToTextClient` |
 | AssemblyAI | [tryAGI.AssemblyAI](https://www.nuget.org/packages/tryAGI.AssemblyAI) | [GitHub](https://github.com/tryAGI/AssemblyAI) | [Docs](https://tryagi.github.io/AssemblyAI/) | `ISpeechToTextClient` |
+| Deepgram | [tryAGI.Deepgram](https://www.nuget.org/packages/tryAGI.Deepgram) | [GitHub](https://github.com/tryAGI/Deepgram) | [Docs](https://tryagi.github.io/Deepgram/) | `ISpeechToTextClient` |
+| Gladia | [Gladia](https://www.nuget.org/packages/Gladia) | [GitHub](https://github.com/tryAGI/Gladia) | [Docs](https://tryagi.github.io/Gladia/) | `ISpeechToTextClient` |
+| Cartesia | [Cartesia](https://www.nuget.org/packages/Cartesia) | [GitHub](https://github.com/tryAGI/Cartesia) | [Docs](https://tryagi.github.io/Cartesia/) | `ISpeechToTextClient` |
+| Ultravox | [Ultravox](https://www.nuget.org/packages/Ultravox) | [GitHub](https://github.com/tryAGI/Ultravox) | [Docs](https://tryagi.github.io/Ultravox/) | - |
 
 ## Translation / NLP
 
@@ -56,6 +63,7 @@ Complete listing of all tryAGI SDKs organized by category.
 | Jina | [tryAGI.Jina](https://www.nuget.org/packages/tryAGI.Jina) | [GitHub](https://github.com/tryAGI/Jina) | [Docs](https://tryagi.github.io/Jina/) | `IEmbeddingGenerator` |
 | VoyageAI | [tryAGI.VoyageAI](https://www.nuget.org/packages/tryAGI.VoyageAI) | [GitHub](https://github.com/tryAGI/VoyageAI) | [Docs](https://tryagi.github.io/VoyageAI/) | `IEmbeddingGenerator` |
 | TwelveLabs | [TwelveLabs](https://www.nuget.org/packages/TwelveLabs) | [GitHub](https://github.com/tryAGI/TwelveLabs) | [Docs](https://tryagi.github.io/TwelveLabs/) | `IEmbeddingGenerator` |
+| Mixedbread | [Mixedbread](https://www.nuget.org/packages/Mixedbread) | [GitHub](https://github.com/tryAGI/Mixedbread) | [Docs](https://tryagi.github.io/Mixedbread/) | `IEmbeddingGenerator` |
 | Tavily | [tryAGI.Tavily](https://www.nuget.org/packages/tryAGI.Tavily) | [GitHub](https://github.com/tryAGI/Tavily) | [Docs](https://tryagi.github.io/Tavily/) | `AIFunction` tools |
 | Vectara | [tryAGI.Vectara](https://www.nuget.org/packages/tryAGI.Vectara) | [GitHub](https://github.com/tryAGI/Vectara) | [Docs](https://tryagi.github.io/Vectara/) | - |
 
@@ -65,6 +73,26 @@ Complete listing of all tryAGI SDKs organized by category.
 |-----|-------|--------|------|
 | Chroma | [tryAGI.Chroma](https://www.nuget.org/packages/tryAGI.Chroma) | [GitHub](https://github.com/tryAGI/Chroma) | [Docs](https://tryagi.github.io/Chroma/) |
 | Weaviate | [tryAGI.Weaviate](https://www.nuget.org/packages/tryAGI.Weaviate) | [GitHub](https://github.com/tryAGI/Weaviate) | [Docs](https://tryagi.github.io/Weaviate/) |
+
+## Observability / Evaluation
+
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| Phoenix | [tryAGI.Phoenix](https://www.nuget.org/packages/tryAGI.Phoenix) | [GitHub](https://github.com/tryAGI/Phoenix) | [Docs](https://tryagi.github.io/Phoenix/) | `AIFunction` tools |
+| Langfuse | [Langfuse](https://www.nuget.org/packages/Langfuse) | [GitHub](https://github.com/tryAGI/Langfuse) | [Docs](https://tryagi.github.io/Langfuse/) | - |
+
+## AI Agent Infrastructure
+
+| SDK | NuGet | GitHub | Docs |
+|-----|-------|--------|------|
+| E2B | [E2B](https://www.nuget.org/packages/E2B) | [GitHub](https://github.com/tryAGI/E2B) | [Docs](https://tryagi.github.io/E2B/) |
+| Mem0 | [Mem0](https://www.nuget.org/packages/Mem0) | [GitHub](https://github.com/tryAGI/Mem0) | [Docs](https://tryagi.github.io/Mem0/) |
+
+## Computer Vision
+
+| SDK | NuGet | GitHub | Docs |
+|-----|-------|--------|------|
+| Roboflow | [Roboflow](https://www.nuget.org/packages/Roboflow) | [GitHub](https://github.com/tryAGI/Roboflow) | [Docs](https://tryagi.github.io/Roboflow/) |
 
 ## Platforms / Orchestration
 
