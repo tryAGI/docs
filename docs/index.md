@@ -4,7 +4,7 @@ tryAGI is an open-source organization building production-ready .NET SDKs for AI
 
 ## Key features
 
-- **50+ SDKs** covering LLMs, image/video/3D generation, audio, search, translation, embeddings, observability, and vector databases
+- **120+ SDKs** covering LLMs, image/video/3D generation, audio, search, translation, embeddings, observability, and vector databases
 - **Microsoft.Extensions.AI** — unified `IChatClient`, `IEmbeddingGenerator`, `ISpeechToTextClient`, and `AIFunction` tools across 25+ providers
 - **Source-generated** — AOT/trimming compatible, no reflection, JSON serialization via `JsonSerializerContext`
 - **Auto-updated** — CI fetches the latest OpenAPI specs every 3 hours and opens PRs for changes
