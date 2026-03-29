@@ -7,6 +7,8 @@ repo_name: tryAGI/docs
 nav:
 - Home: index.md
 - Getting Started: getting-started.md
+- Free Tiers:
+  - Comparison: generative-media/index.md
 - MEAI:
   - Overview: meai/index.md
   - IChatClient: meai/chat-client.md

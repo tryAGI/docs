@@ -1,6 +1,6 @@
 # SDK Catalog
 
-**50+ SDKs** for AI/ML services, all auto-generated from OpenAPI specs via [AutoSDK](https://github.com/HavenDV/AutoSDK). Each SDK targets `net10.0`, supports AOT/trimming, and is published to NuGet.
+**80+ SDKs** for AI/ML services, all auto-generated from OpenAPI specs via [AutoSDK](https://github.com/HavenDV/AutoSDK). Each SDK targets `net10.0`, supports AOT/trimming, and is published to NuGet.
 
 ## LLM / Text Generation
 
@@ -17,28 +17,53 @@
 | Reka | [tryAGI.Reka](https://www.nuget.org/packages/tryAGI.Reka) | [GitHub](https://github.com/tryAGI/Reka) | [Docs](https://tryagi.github.io/Reka/) | `IChatClient` `ISpeechToTextClient` |
 | HuggingFace | [tryAGI.HuggingFace](https://www.nuget.org/packages/tryAGI.HuggingFace) | [GitHub](https://github.com/tryAGI/HuggingFace) | [Docs](https://tryagi.github.io/HuggingFace/) | `IChatClient` `IEmbeddingGenerator` |
 | Writer | [tryAGI.Writer](https://www.nuget.org/packages/tryAGI.Writer) | [GitHub](https://github.com/tryAGI/Writer) | [Docs](https://tryagi.github.io/Writer/) | `IChatClient` |
+| Upstage | [tryAGI.Upstage](https://www.nuget.org/packages/tryAGI.Upstage) | [GitHub](https://github.com/tryAGI/Upstage) | [Docs](https://tryagi.github.io/Upstage/) | `IChatClient` `IEmbeddingGenerator` `AIFunction` tools |
+| SarvamAI | [tryAGI.SarvamAI](https://www.nuget.org/packages/tryAGI.SarvamAI) | [GitHub](https://github.com/tryAGI/SarvamAI) | [Docs](https://tryagi.github.io/SarvamAI/) | `IChatClient` `ISpeechToTextClient` `AIFunction` tools |
+| PredictionGuard | [tryAGI.PredictionGuard](https://www.nuget.org/packages/tryAGI.PredictionGuard) | [GitHub](https://github.com/tryAGI/PredictionGuard) | [Docs](https://tryagi.github.io/PredictionGuard/) | `AIFunction` tools |
 | Xai | [tryAGI.Xai](https://www.nuget.org/packages/tryAGI.Xai) | [GitHub](https://github.com/tryAGI/Xai) | [Docs](https://tryagi.github.io/Xai/) | via CustomProviders |
 | Groq | [tryAGI.Groq](https://www.nuget.org/packages/tryAGI.Groq) | [GitHub](https://github.com/tryAGI/Groq) | [Docs](https://tryagi.github.io/Groq/) | via CustomProviders |
 | DeepInfra | [tryAGI.DeepInfra](https://www.nuget.org/packages/tryAGI.DeepInfra) | [GitHub](https://github.com/tryAGI/DeepInfra) | [Docs](https://tryagi.github.io/DeepInfra/) | via CustomProviders |
 
-## Image / Video / 3D Generation
+## Image Generation
 
-| SDK | NuGet | GitHub | Docs |
-|-----|-------|--------|------|
-| HeyGen | [tryAGI.HeyGen](https://www.nuget.org/packages/tryAGI.HeyGen) | [GitHub](https://github.com/tryAGI/HeyGen) | [Docs](https://tryagi.github.io/HeyGen/) |
-| Hedra | [tryAGI.Hedra](https://www.nuget.org/packages/tryAGI.Hedra) | [GitHub](https://github.com/tryAGI/Hedra) | [Docs](https://tryagi.github.io/Hedra/) |
-| Ideogram | [tryAGI.Ideogram](https://www.nuget.org/packages/tryAGI.Ideogram) | [GitHub](https://github.com/tryAGI/Ideogram) | [Docs](https://tryagi.github.io/Ideogram/) |
-| Leonardo | [tryAGI.Leonardo](https://www.nuget.org/packages/tryAGI.Leonardo) | [GitHub](https://github.com/tryAGI/Leonardo) | [Docs](https://tryagi.github.io/Leonardo/) |
-| Luma | [tryAGI.Luma](https://www.nuget.org/packages/tryAGI.Luma) | [GitHub](https://github.com/tryAGI/Luma) | [Docs](https://tryagi.github.io/Luma/) |
-| Recraft | [tryAGI.Recraft](https://www.nuget.org/packages/tryAGI.Recraft) | [GitHub](https://github.com/tryAGI/Recraft) | [Docs](https://tryagi.github.io/Recraft/) |
-| Replicate | [tryAGI.Replicate](https://www.nuget.org/packages/tryAGI.Replicate) | [GitHub](https://github.com/tryAGI/Replicate) | [Docs](https://tryagi.github.io/Replicate/) |
-| Runway | [tryAGI.Runway](https://www.nuget.org/packages/tryAGI.Runway) | [GitHub](https://github.com/tryAGI/Runway) | [Docs](https://tryagi.github.io/Runway/) |
-| StabilityAI | [tryAGI.StabilityAI](https://www.nuget.org/packages/tryAGI.StabilityAI) | [GitHub](https://github.com/tryAGI/StabilityAI) | [Docs](https://tryagi.github.io/StabilityAI/) |
-| Tripo | [tryAGI.Tripo](https://www.nuget.org/packages/tryAGI.Tripo) | [GitHub](https://github.com/tryAGI/Tripo) | [Docs](https://tryagi.github.io/Tripo/) |
-| BlackForestLabs | [BlackForestLabs](https://www.nuget.org/packages/BlackForestLabs) | [GitHub](https://github.com/tryAGI/BlackForestLabs) | [Docs](https://tryagi.github.io/BlackForestLabs/) |
-| Meshy | [Meshy](https://www.nuget.org/packages/Meshy) | [GitHub](https://github.com/tryAGI/Meshy) | [Docs](https://tryagi.github.io/Meshy/) |
-| Meshcapade | [Meshcapade](https://www.nuget.org/packages/Meshcapade) | [GitHub](https://github.com/tryAGI/Meshcapade) | [Docs](https://tryagi.github.io/Meshcapade/) |
-| Fal | [tryAGI.Fal](https://www.nuget.org/packages/tryAGI.Fal) | [GitHub](https://github.com/tryAGI/Fal) | [Docs](https://tryagi.github.io/Fal/) |
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| Ideogram | [tryAGI.Ideogram](https://www.nuget.org/packages/tryAGI.Ideogram) | [GitHub](https://github.com/tryAGI/Ideogram) | [Docs](https://tryagi.github.io/Ideogram/) | - |
+| Leonardo | [tryAGI.Leonardo](https://www.nuget.org/packages/tryAGI.Leonardo) | [GitHub](https://github.com/tryAGI/Leonardo) | [Docs](https://tryagi.github.io/Leonardo/) | - |
+| Recraft | [tryAGI.Recraft](https://www.nuget.org/packages/tryAGI.Recraft) | [GitHub](https://github.com/tryAGI/Recraft) | [Docs](https://tryagi.github.io/Recraft/) | - |
+| Replicate | [tryAGI.Replicate](https://www.nuget.org/packages/tryAGI.Replicate) | [GitHub](https://github.com/tryAGI/Replicate) | [Docs](https://tryagi.github.io/Replicate/) | - |
+| StabilityAI | [tryAGI.StabilityAI](https://www.nuget.org/packages/tryAGI.StabilityAI) | [GitHub](https://github.com/tryAGI/StabilityAI) | [Docs](https://tryagi.github.io/StabilityAI/) | - |
+| BlackForestLabs | [BlackForestLabs](https://www.nuget.org/packages/BlackForestLabs) | [GitHub](https://github.com/tryAGI/BlackForestLabs) | [Docs](https://tryagi.github.io/BlackForestLabs/) | - |
+| Photoroom | [tryAGI.Photoroom](https://www.nuget.org/packages/tryAGI.Photoroom) | [GitHub](https://github.com/tryAGI/Photoroom) | [Docs](https://tryagi.github.io/Photoroom/) | `AIFunction` tools |
+
+## Video Generation
+
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| HeyGen | [tryAGI.HeyGen](https://www.nuget.org/packages/tryAGI.HeyGen) | [GitHub](https://github.com/tryAGI/HeyGen) | [Docs](https://tryagi.github.io/HeyGen/) | - |
+| Hedra | [tryAGI.Hedra](https://www.nuget.org/packages/tryAGI.Hedra) | [GitHub](https://github.com/tryAGI/Hedra) | [Docs](https://tryagi.github.io/Hedra/) | - |
+| Luma | [tryAGI.Luma](https://www.nuget.org/packages/tryAGI.Luma) | [GitHub](https://github.com/tryAGI/Luma) | [Docs](https://tryagi.github.io/Luma/) | - |
+| Runway | [tryAGI.Runway](https://www.nuget.org/packages/tryAGI.Runway) | [GitHub](https://github.com/tryAGI/Runway) | [Docs](https://tryagi.github.io/Runway/) | - |
+| KlingAI | [tryAGI.KlingAI](https://www.nuget.org/packages/tryAGI.KlingAI) | [GitHub](https://github.com/tryAGI/KlingAI) | [Docs](https://tryagi.github.io/KlingAI/) | `AIFunction` tools |
+| DId | [tryAGI.DId](https://www.nuget.org/packages/tryAGI.DId) | [GitHub](https://github.com/tryAGI/DId) | [Docs](https://tryagi.github.io/DId/) | `AIFunction` tools |
+| Synthesia | [tryAGI.Synthesia](https://www.nuget.org/packages/tryAGI.Synthesia) | [GitHub](https://github.com/tryAGI/Synthesia) | [Docs](https://tryagi.github.io/Synthesia/) | `AIFunction` tools |
+| Tavus | [tryAGI.Tavus](https://www.nuget.org/packages/tryAGI.Tavus) | [GitHub](https://github.com/tryAGI/Tavus) | [Docs](https://tryagi.github.io/Tavus/) | `AIFunction` tools |
+| Shotstack | [tryAGI.Shotstack](https://www.nuget.org/packages/tryAGI.Shotstack) | [GitHub](https://github.com/tryAGI/Shotstack) | [Docs](https://tryagi.github.io/Shotstack/) | `AIFunction` tools |
+| Descript | [tryAGI.Descript](https://www.nuget.org/packages/tryAGI.Descript) | [GitHub](https://github.com/tryAGI/Descript) | [Docs](https://tryagi.github.io/Descript/) | - |
+
+## 3D Generation
+
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| Tripo | [tryAGI.Tripo](https://www.nuget.org/packages/tryAGI.Tripo) | [GitHub](https://github.com/tryAGI/Tripo) | [Docs](https://tryagi.github.io/Tripo/) | - |
+| Meshy | [Meshy](https://www.nuget.org/packages/Meshy) | [GitHub](https://github.com/tryAGI/Meshy) | [Docs](https://tryagi.github.io/Meshy/) | - |
+| Meshcapade | [Meshcapade](https://www.nuget.org/packages/Meshcapade) | [GitHub](https://github.com/tryAGI/Meshcapade) | [Docs](https://tryagi.github.io/Meshcapade/) | - |
+
+## Generative Media Inference
+
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| Fal | [tryAGI.Fal](https://www.nuget.org/packages/tryAGI.Fal) | [GitHub](https://github.com/tryAGI/Fal) | [Docs](https://tryagi.github.io/Fal/) | - |
 
 ## Audio / Speech
 
@@ -49,7 +74,19 @@
 | Deepgram | [tryAGI.Deepgram](https://www.nuget.org/packages/tryAGI.Deepgram) | [GitHub](https://github.com/tryAGI/Deepgram) | [Docs](https://tryagi.github.io/Deepgram/) | `ISpeechToTextClient` |
 | Gladia | [Gladia](https://www.nuget.org/packages/Gladia) | [GitHub](https://github.com/tryAGI/Gladia) | [Docs](https://tryagi.github.io/Gladia/) | `ISpeechToTextClient` |
 | Cartesia | [Cartesia](https://www.nuget.org/packages/Cartesia) | [GitHub](https://github.com/tryAGI/Cartesia) | [Docs](https://tryagi.github.io/Cartesia/) | `ISpeechToTextClient` |
+| FishAudio | [tryAGI.FishAudio](https://www.nuget.org/packages/tryAGI.FishAudio) | [GitHub](https://github.com/tryAGI/FishAudio) | [Docs](https://tryagi.github.io/FishAudio/) | `ISpeechToTextClient` `AIFunction` tools |
+| Murf | [tryAGI.Murf](https://www.nuget.org/packages/tryAGI.Murf) | [GitHub](https://github.com/tryAGI/Murf) | [Docs](https://tryagi.github.io/Murf/) | `AIFunction` tools |
+| RevAI | [tryAGI.RevAI](https://www.nuget.org/packages/tryAGI.RevAI) | [GitHub](https://github.com/tryAGI/RevAI) | [Docs](https://tryagi.github.io/RevAI/) | `ISpeechToTextClient` `AIFunction` tools |
+| Speechmatics | [tryAGI.Speechmatics](https://www.nuget.org/packages/tryAGI.Speechmatics) | [GitHub](https://github.com/tryAGI/Speechmatics) | [Docs](https://tryagi.github.io/Speechmatics/) | `ISpeechToTextClient` `AIFunction` tools |
 | Ultravox | [Ultravox](https://www.nuget.org/packages/Ultravox) | [GitHub](https://github.com/tryAGI/Ultravox) | [Docs](https://tryagi.github.io/Ultravox/) | - |
+
+## Voice AI
+
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| RetellAI | [tryAGI.RetellAI](https://www.nuget.org/packages/tryAGI.RetellAI) | [GitHub](https://github.com/tryAGI/RetellAI) | [Docs](https://tryagi.github.io/RetellAI/) | `AIFunction` tools |
+| Vapi | [tryAGI.Vapi](https://www.nuget.org/packages/tryAGI.Vapi) | [GitHub](https://github.com/tryAGI/Vapi) | [Docs](https://tryagi.github.io/Vapi/) | `AIFunction` tools |
+| BlandAI | [tryAGI.BlandAI](https://www.nuget.org/packages/tryAGI.BlandAI) | [GitHub](https://github.com/tryAGI/BlandAI) | [Docs](https://tryagi.github.io/BlandAI/) | - |
 
 ## Translation / NLP
 
@@ -57,12 +94,16 @@
 |-----|-------|--------|------|------|
 | DeepL | [DeepL](https://www.nuget.org/packages/DeepL) | [GitHub](https://github.com/tryAGI/DeepL) | [Docs](https://tryagi.github.io/DeepL/) | `AIFunction` tools |
 
+Also see [SarvamAI](#llm--text-generation) (22+ Indian languages: translation, transliteration, STT via `AIFunction` tools).
+
 ## Search / RAG / Embeddings
 
 | SDK | NuGet | GitHub | Docs | MEAI |
 |-----|-------|--------|------|------|
 | Exa | [Exa](https://www.nuget.org/packages/Exa) | [GitHub](https://github.com/tryAGI/Exa) | [Docs](https://tryagi.github.io/Exa/) | `AIFunction` tools |
 | Serper | [Serper](https://www.nuget.org/packages/Serper) | [GitHub](https://github.com/tryAGI/Serper) | [Docs](https://tryagi.github.io/Serper/) | `AIFunction` tools |
+| BraveSearch | [tryAGI.BraveSearch](https://www.nuget.org/packages/tryAGI.BraveSearch) | [GitHub](https://github.com/tryAGI/BraveSearch) | [Docs](https://tryagi.github.io/BraveSearch/) | `AIFunction` tools |
+| GroundX | [tryAGI.GroundX](https://www.nuget.org/packages/tryAGI.GroundX) | [GitHub](https://github.com/tryAGI/GroundX) | [Docs](https://tryagi.github.io/GroundX/) | `AIFunction` tools |
 | Jina | [tryAGI.Jina](https://www.nuget.org/packages/tryAGI.Jina) | [GitHub](https://github.com/tryAGI/Jina) | [Docs](https://tryagi.github.io/Jina/) | `IEmbeddingGenerator` |
 | VoyageAI | [tryAGI.VoyageAI](https://www.nuget.org/packages/tryAGI.VoyageAI) | [GitHub](https://github.com/tryAGI/VoyageAI) | [Docs](https://tryagi.github.io/VoyageAI/) | `IEmbeddingGenerator` |
 | TwelveLabs | [TwelveLabs](https://www.nuget.org/packages/TwelveLabs) | [GitHub](https://github.com/tryAGI/TwelveLabs) | [Docs](https://tryagi.github.io/TwelveLabs/) | `IEmbeddingGenerator` |
@@ -72,10 +113,21 @@
 
 ## Vector Databases
 
-| SDK | NuGet | GitHub | Docs |
-|-----|-------|--------|------|
-| Chroma | [tryAGI.Chroma](https://www.nuget.org/packages/tryAGI.Chroma) | [GitHub](https://github.com/tryAGI/Chroma) | [Docs](https://tryagi.github.io/Chroma/) |
-| Weaviate | [tryAGI.Weaviate](https://www.nuget.org/packages/tryAGI.Weaviate) | [GitHub](https://github.com/tryAGI/Weaviate) | [Docs](https://tryagi.github.io/Weaviate/) |
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| Chroma | [tryAGI.Chroma](https://www.nuget.org/packages/tryAGI.Chroma) | [GitHub](https://github.com/tryAGI/Chroma) | [Docs](https://tryagi.github.io/Chroma/) | - |
+| Weaviate | [tryAGI.Weaviate](https://www.nuget.org/packages/tryAGI.Weaviate) | [GitHub](https://github.com/tryAGI/Weaviate) | [Docs](https://tryagi.github.io/Weaviate/) | - |
+| Qdrant | [tryAGI.Qdrant](https://www.nuget.org/packages/tryAGI.Qdrant) | [GitHub](https://github.com/tryAGI/Qdrant) | [Docs](https://tryagi.github.io/Qdrant/) | - |
+| Milvus | [tryAGI.Milvus](https://www.nuget.org/packages/tryAGI.Milvus) | [GitHub](https://github.com/tryAGI/Milvus) | [Docs](https://tryagi.github.io/Milvus/) | `AIFunction` tools |
+| Turbopuffer | [tryAGI.Turbopuffer](https://www.nuget.org/packages/tryAGI.Turbopuffer) | [GitHub](https://github.com/tryAGI/Turbopuffer) | [Docs](https://tryagi.github.io/Turbopuffer/) | - |
+
+## Document Processing
+
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| LlamaParse | [tryAGI.LlamaParse](https://www.nuget.org/packages/tryAGI.LlamaParse) | [GitHub](https://github.com/tryAGI/LlamaParse) | [Docs](https://tryagi.github.io/LlamaParse/) | `AIFunction` tools |
+| Nanonets | [tryAGI.Nanonets](https://www.nuget.org/packages/tryAGI.Nanonets) | [GitHub](https://github.com/tryAGI/Nanonets) | [Docs](https://tryagi.github.io/Nanonets/) | `AIFunction` tools |
+| DoclingServe | [tryAGI.DoclingServe](https://www.nuget.org/packages/tryAGI.DoclingServe) | [GitHub](https://github.com/tryAGI/DoclingServe) | [Docs](https://tryagi.github.io/DoclingServe/) | - |
 
 ## Observability / Evaluation
 
@@ -83,13 +135,59 @@
 |-----|-------|--------|------|------|
 | Phoenix | [tryAGI.Phoenix](https://www.nuget.org/packages/tryAGI.Phoenix) | [GitHub](https://github.com/tryAGI/Phoenix) | [Docs](https://tryagi.github.io/Phoenix/) | `AIFunction` tools |
 | Langfuse | [Langfuse](https://www.nuget.org/packages/Langfuse) | [GitHub](https://github.com/tryAGI/Langfuse) | [Docs](https://tryagi.github.io/Langfuse/) | - |
+| Helicone | [tryAGI.Helicone](https://www.nuget.org/packages/tryAGI.Helicone) | [GitHub](https://github.com/tryAGI/Helicone) | [Docs](https://tryagi.github.io/Helicone/) | `AIFunction` tools |
+| Opik | [tryAGI.Opik](https://www.nuget.org/packages/tryAGI.Opik) | [GitHub](https://github.com/tryAGI/Opik) | [Docs](https://tryagi.github.io/Opik/) | `AIFunction` tools |
+
+## AI Gateway / Routing
+
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| OpenRouter | [tryAGI.OpenRouter](https://www.nuget.org/packages/tryAGI.OpenRouter) | [GitHub](https://github.com/tryAGI/OpenRouter) | [Docs](https://tryagi.github.io/OpenRouter/) | `AIFunction` tools |
+| Portkey | [tryAGI.Portkey](https://www.nuget.org/packages/tryAGI.Portkey) | [GitHub](https://github.com/tryAGI/Portkey) | [Docs](https://tryagi.github.io/Portkey/) | - |
+
+## AI Security / Guardrails
+
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| Guardrails | [tryAGI.Guardrails](https://www.nuget.org/packages/tryAGI.Guardrails) | [GitHub](https://github.com/tryAGI/Guardrails) | [Docs](https://tryagi.github.io/Guardrails/) | `AIFunction` tools |
+| Lakera | [tryAGI.Lakera](https://www.nuget.org/packages/tryAGI.Lakera) | [GitHub](https://github.com/tryAGI/Lakera) | [Docs](https://tryagi.github.io/Lakera/) | `AIFunction` tools |
+| NightfallAI | [tryAGI.NightfallAI](https://www.nuget.org/packages/tryAGI.NightfallAI) | [GitHub](https://github.com/tryAGI/NightfallAI) | [Docs](https://tryagi.github.io/NightfallAI/) | `AIFunction` tools |
 
 ## AI Agent Infrastructure
 
-| SDK | NuGet | GitHub | Docs |
-|-----|-------|--------|------|
-| E2B | [E2B](https://www.nuget.org/packages/E2B) | [GitHub](https://github.com/tryAGI/E2B) | [Docs](https://tryagi.github.io/E2B/) |
-| Mem0 | [Mem0](https://www.nuget.org/packages/Mem0) | [GitHub](https://github.com/tryAGI/Mem0) | [Docs](https://tryagi.github.io/Mem0/) |
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| E2B | [E2B](https://www.nuget.org/packages/E2B) | [GitHub](https://github.com/tryAGI/E2B) | [Docs](https://tryagi.github.io/E2B/) | - |
+| Mem0 | [Mem0](https://www.nuget.org/packages/Mem0) | [GitHub](https://github.com/tryAGI/Mem0) | [Docs](https://tryagi.github.io/Mem0/) | - |
+| CursorAgents | [tryAGI.CursorAgents](https://www.nuget.org/packages/tryAGI.CursorAgents) | [GitHub](https://github.com/tryAGI/CursorAgents) | [Docs](https://tryagi.github.io/CursorAgents/) | `AIFunction` tools |
+| Letta | [tryAGI.Letta](https://www.nuget.org/packages/tryAGI.Letta) | [GitHub](https://github.com/tryAGI/Letta) | [Docs](https://tryagi.github.io/Letta/) | - |
+| Browserbase | [tryAGI.Browserbase](https://www.nuget.org/packages/tryAGI.Browserbase) | [GitHub](https://github.com/tryAGI/Browserbase) | [Docs](https://tryagi.github.io/Browserbase/) | `AIFunction` tools |
+
+## Prompt Management
+
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| Humanloop | [tryAGI.Humanloop](https://www.nuget.org/packages/tryAGI.Humanloop) | [GitHub](https://github.com/tryAGI/Humanloop) | [Docs](https://tryagi.github.io/Humanloop/) | `AIFunction` tools |
+| PromptLayer | [tryAGI.PromptLayer](https://www.nuget.org/packages/tryAGI.PromptLayer) | [GitHub](https://github.com/tryAGI/PromptLayer) | [Docs](https://tryagi.github.io/PromptLayer/) | `AIFunction` tools |
+| Braintrust | [tryAGI.Braintrust](https://www.nuget.org/packages/tryAGI.Braintrust) | [GitHub](https://github.com/tryAGI/Braintrust) | [Docs](https://tryagi.github.io/Braintrust/) | `AIFunction` tools |
+
+## Data Labeling
+
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| LabelStudio | [tryAGI.LabelStudio](https://www.nuget.org/packages/tryAGI.LabelStudio) | [GitHub](https://github.com/tryAGI/LabelStudio) | [Docs](https://tryagi.github.io/LabelStudio/) | `AIFunction` tools |
+
+## Emotion AI
+
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| HumeAI | [tryAGI.HumeAI](https://www.nuget.org/packages/tryAGI.HumeAI) | [GitHub](https://github.com/tryAGI/HumeAI) | [Docs](https://tryagi.github.io/HumeAI/) | `AIFunction` tools |
+
+## Time Series AI
+
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| Nixtla | [tryAGI.Nixtla](https://www.nuget.org/packages/tryAGI.Nixtla) | [GitHub](https://github.com/tryAGI/Nixtla) | [Docs](https://tryagi.github.io/Nixtla/) | `AIFunction` tools |
 
 ## Computer Vision
 
@@ -99,14 +197,15 @@
 
 ## Platforms / Orchestration
 
-| SDK | NuGet | GitHub | Docs |
-|-----|-------|--------|------|
-| Firecrawl | [tryAGI.Firecrawl](https://www.nuget.org/packages/tryAGI.Firecrawl) | [GitHub](https://github.com/tryAGI/Firecrawl) | [Docs](https://tryagi.github.io/Firecrawl/) |
-| Flowise | [tryAGI.Flowise](https://www.nuget.org/packages/tryAGI.Flowise) | [GitHub](https://github.com/tryAGI/Flowise) | [Docs](https://tryagi.github.io/Flowise/) |
-| Forem | [tryAGI.Forem](https://www.nuget.org/packages/tryAGI.Forem) | [GitHub](https://github.com/tryAGI/Forem) | [Docs](https://tryagi.github.io/Forem/) |
-| Instill | [tryAGI.Instill](https://www.nuget.org/packages/tryAGI.Instill) | [GitHub](https://github.com/tryAGI/Instill) | [Docs](https://tryagi.github.io/Instill/) |
-| LangSmith | [tryAGI.LangSmith](https://www.nuget.org/packages/tryAGI.LangSmith) | [GitHub](https://github.com/tryAGI/LangSmith) | [Docs](https://tryagi.github.io/LangSmith/) |
-
+| SDK | NuGet | GitHub | Docs | MEAI |
+|-----|-------|--------|------|------|
+| Composio | [tryAGI.Composio](https://www.nuget.org/packages/tryAGI.Composio) | [GitHub](https://github.com/tryAGI/Composio) | [Docs](https://tryagi.github.io/Composio/) | `AIFunction` tools |
+| Coze | [tryAGI.Coze](https://www.nuget.org/packages/tryAGI.Coze) | [GitHub](https://github.com/tryAGI/Coze) | [Docs](https://tryagi.github.io/Coze/) | - |
+| Firecrawl | [tryAGI.Firecrawl](https://www.nuget.org/packages/tryAGI.Firecrawl) | [GitHub](https://github.com/tryAGI/Firecrawl) | [Docs](https://tryagi.github.io/Firecrawl/) | - |
+| Flowise | [tryAGI.Flowise](https://www.nuget.org/packages/tryAGI.Flowise) | [GitHub](https://github.com/tryAGI/Flowise) | [Docs](https://tryagi.github.io/Flowise/) | - |
+| Forem | [tryAGI.Forem](https://www.nuget.org/packages/tryAGI.Forem) | [GitHub](https://github.com/tryAGI/Forem) | [Docs](https://tryagi.github.io/Forem/) | - |
+| Instill | [tryAGI.Instill](https://www.nuget.org/packages/tryAGI.Instill) | [GitHub](https://github.com/tryAGI/Instill) | [Docs](https://tryagi.github.io/Instill/) | - |
+| LangSmith | [tryAGI.LangSmith](https://www.nuget.org/packages/tryAGI.LangSmith) | [GitHub](https://github.com/tryAGI/LangSmith) | [Docs](https://tryagi.github.io/LangSmith/) | - |
 
 ## LangChain Ecosystem
 
