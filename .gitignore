@@ -1,2 +1,6 @@
 site/
 .venv/
+
+# MkDocs local build outputs
+_site/
+docs/assets/

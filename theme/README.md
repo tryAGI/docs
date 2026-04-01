@@ -1,0 +1,32 @@
+# tryAGI MkDocs Theme
+
+Shared MkDocs theme package for tryAGI SDK documentation sites.
+
+## Local Development
+
+From the [`docs`](/Users/havendv/GitHub/tryAGI/docs) repo:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e ./theme mkdocs-copy-to-llm
+mkdocs serve
+```
+
+From any other repo:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install "git+https://github.com/tryAGI/docs.git@main#subdirectory=theme" mkdocs-copy-to-llm
+mkdocs serve
+```
+
+## Theme Name
+
+Use `tryagi` in `mkdocs.yml`:
+
+```yaml
+theme:
+  name: tryagi
+```

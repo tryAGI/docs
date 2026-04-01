@@ -1,0 +1,16 @@
+{% set tryagi = config.extra.tryagi if config.extra and config.extra.tryagi is defined else none %}
+{% set logo = tryagi.logo if tryagi and tryagi.logo is defined else none %}
+
+{% if logo and logo.light and logo.dark %}
+  <span class="tryagi-logo tryagi-logo--adaptive" aria-hidden="true">
+    <img class="tryagi-logo__image tryagi-logo__image--light" src="{{ logo.light | url }}" alt="logo">
+    <img class="tryagi-logo__image tryagi-logo__image--dark" src="{{ logo.dark | url }}" alt="logo">
+  </span>
+{% elif logo and logo.src %}
+  <img src="{{ logo.src | url }}" alt="logo">
+{% elif config.theme.logo %}
+  <img src="{{ config.theme.logo | url }}" alt="logo">
+{% else %}
+  {% set icon = config.theme.icon.logo or "material/file-document" %}
+  {% include ".icons/" ~ icon ~ ".svg" %}
+{% endif %}

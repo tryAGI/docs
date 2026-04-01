@@ -1,0 +1,2 @@
+[mkdocs.themes]
+tryagi = tryagi_mkdocs_theme

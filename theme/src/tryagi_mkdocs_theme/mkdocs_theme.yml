@@ -1,0 +1,38 @@
+extends: material
+static_templates:
+  - 404.html
+locale: en
+include_search_page: false
+search_index_only: true
+palette:
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
+    primary: black
+    accent: green
+    toggle:
+      icon: material/weather-night
+      name: Switch to dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    primary: black
+    accent: green
+    toggle:
+      icon: material/weather-sunny
+      name: Switch to light mode
+features:
+  - content.action.edit
+  - content.code.copy
+  - navigation.instant
+  - navigation.instant.prefetch
+  - navigation.sections
+  - navigation.tabs
+  - navigation.top
+  - search.highlight
+  - search.suggest
+  - toc.follow
+font:
+  text: Space Grotesk
+  code: IBM Plex Mono
+icon:
+  logo: material/file-document
+  repo: fontawesome/brands/github
