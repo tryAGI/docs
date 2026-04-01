@@ -4,3 +4,7 @@ site/
 # MkDocs local build outputs
 _site/
 docs/assets/
+
+# Local Python packaging artifacts
+theme/src/*.egg-info/
+theme/src/**/__pycache__/

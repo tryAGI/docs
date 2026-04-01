@@ -1,1 +1,0 @@
-tryagi_mkdocs_theme
