@@ -19,7 +19,7 @@
 | Writer | Native | Y | - | - | - | Alias recommended |
 | SarvamAI | Simulated | Y | - | `reasoning_effort`, `wiki_grounding` | - | SSE exists in the provider API, but the current adapter is post-hoc |
 | Upstage | Native | Y | Images | - | - | Also exposes groundedness, translation, and document tools |
-| Coze | Native | Y | - | Reasoning text | - | Requires `bot_id`; chat is bot-centric |
+| Coze | Native | Y* | - | Reasoning text | - | Requires `bot_id`; provider tool calls are not yet emitted as `FunctionCallContent` |
 
 ## Universal Usage
 
@@ -83,7 +83,7 @@ var response = await client.GetResponseAsync(
 
 ## Tool Calling Pattern
 
-All current `IChatClient` implementations support MEAI tool calling:
+Most current `IChatClient` implementations support full MEAI tool calling:
 
 ```csharp
 using CSharpToJsonSchema;
@@ -106,6 +106,8 @@ var options = new ChatOptions
 
 var response = await client.GetResponseAsync("What's the weather in Tokyo?", options);
 ```
+
+`Coze` is the current exception in the direct adapters: it can signal `ChatFinishReason.ToolCalls` and send tool results back to the provider, but it does not yet surface provider-issued tool calls back as `FunctionCallContent`.
 
 ## Structured Output
 
@@ -139,4 +141,4 @@ Per-provider details live in the SDK docs:
 - [Writer](https://tryagi.github.io/Writer/guides/meai/)
 - [SarvamAI](https://tryagi.github.io/SarvamAI/guides/meai/)
 - [Upstage](https://tryagi.github.io/Upstage/guides/meai/)
-- [Coze repository](https://github.com/tryAGI/Coze)
+- [Coze](https://tryagi.github.io/Coze/guides/meai/)

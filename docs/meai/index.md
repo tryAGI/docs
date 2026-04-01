@@ -21,7 +21,7 @@ All current implementations target **Microsoft.Extensions.AI.Abstractions 10.4.1
 | [AssemblyAI](https://tryagi.github.io/AssemblyAI/guides/meai/) | - | - | Y | - | No |
 | [Cartesia](https://tryagi.github.io/Cartesia/guides/meai/) | - | - | Y | - | No |
 | [Cohere](https://tryagi.github.io/Cohere/guides/meai/) | Y | Y | - | - | Yes |
-| [Coze](https://github.com/tryAGI/Coze) | Y | - | - | - | No |
+| [Coze](https://tryagi.github.io/Coze/guides/meai/) | Y | - | - | - | No |
 | [Deepgram](https://tryagi.github.io/Deepgram/guides/meai/) | - | - | Y | - | No |
 | [ElevenLabs](https://tryagi.github.io/ElevenLabs/guides/meai/) | - | - | Y | - | Yes |
 | [FishAudio](https://tryagi.github.io/FishAudio/guides/meai/) | - | - | Y | Y | No |
@@ -87,7 +87,7 @@ The reference chat implementation is [AnthropicClient.ChatClient.cs](https://git
 
 ## Gaps Worth Fixing Next
 
-- `Coze` already has an `IChatClient` implementation, but it still lacks a published per-SDK MEAI guide page.
+- `Coze` now has a published MEAI guide page, but its adapter still needs full `FunctionCallContent` round-tripping for provider-issued tool calls.
 - `PredictionGuard` is still tool-only even though it is a realistic candidate for a dedicated `IChatClient` adapter.
 - Only `Deepgram` currently provides truly incremental `ISpeechToTextClient.GetStreamingTextAsync()` updates. Several other STT SDKs expose the method but return the final transcript after processing completes.
 - `OpenRouter` and the standalone `Xai` SDK do not need urgent dedicated MEAI adapters because `tryAGI.OpenAI.CustomProviders` already covers the common chat and embedding path.
