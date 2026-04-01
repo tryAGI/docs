@@ -1,96 +1,86 @@
-# Namespace Conflict Pattern
+# Alias Guidance
 
-Some auto-generated SDKs have their own `IChatClient` interface in the SDK namespace that shadows `Microsoft.Extensions.AI.IChatClient`. This causes compilation errors when trying to use MEAI interfaces directly.
+The old docs treated every collision as a generic "namespace conflict". In practice there are two different cases:
 
-## Affected SDKs
+- **Interface collisions**: the SDK generates its own `IChatClient` or `ISpeechToTextClient`
+- **Model-type collisions**: the SDK generates types such as `ChatMessage`, `ChatResponse`, or `Embedding`
 
-| SDK | Has Conflict | Resolution |
-|-----|:---:|------------|
-| OpenAI | Yes | Use `Meai` alias |
-| Mistral | Yes | Use `Meai` alias |
-| Cohere | Yes | Use `Meai` alias |
-| Together | Yes | Use `Meai` alias |
-| Reka | Yes | Use `Meai` alias |
-| Anthropic | No | Direct `using` works |
-| Ollama | No | Direct `using` works |
-| Google.Gemini | No | Direct `using` works |
-| AI21 | No | Direct `using` works |
-| HuggingFace | No | Direct `using` works |
-| Jina | No | Direct `using` works |
-| VoyageAI | No | Direct `using` works |
-
-## Common errors
-
-Without the alias, you'll see errors like:
-
-- **CS0029**: Cannot implicitly convert type `TogetherClient` to `Together.IChatClient`
-- **CS0308** / **CS1929**: `GetService<T>()` resolves to the non-generic SDK method instead of the MEAI extension
-
-## The `Meai` alias pattern
-
-Add a namespace alias at the top of your file:
+In both cases, the safest pattern is:
 
 ```csharp
 using Meai = Microsoft.Extensions.AI;
 ```
 
-Then use the alias to explicitly reference MEAI types:
+## SDKs Where an Alias Is Recommended
+
+| SDK | Collision type | Why the alias helps |
+|-----|----------------|---------------------|
+| OpenAI | `IChatClient`, `Embedding` | The SDK generates its own `IChatClient` interface and `Embedding` model |
+| Mistral | `IChatClient` | Generated `IChatClient` shadows MEAI |
+| Together | `IChatClient` | Generated `IChatClient` shadows MEAI |
+| Reka | `IChatClient` | Generated `IChatClient` shadows MEAI |
+| Upstage | `IChatClient`, `ChatMessage` | Both the interface and common message types collide |
+| ElevenLabs | `ISpeechToTextClient` | Generated `ISpeechToTextClient` shadows MEAI |
+| Cohere | `ChatMessage`, `ChatResponse` | Common chat model names overlap with MEAI concepts |
+| Writer | `ChatMessage`, `ChatResponse` | Common chat model names overlap with MEAI concepts |
+| Mixedbread | `Embedding` | Generated `Embedding` model shadows `Embedding<T>` |
+| Pinecone | `Embedding` | Generated `Embedding` struct shadows `Embedding<T>` |
+
+## Full Pattern
 
 ```csharp
 using Meai = Microsoft.Extensions.AI;
 
-// Explicit MEAI interface reference
-Meai.IChatClient chatClient = client;
-
-// Explicit extension method calls (not extension syntax)
-var metadata = Meai.ChatClientExtensions.GetService<Meai.ChatClientMetadata>(chatClient);
-var self = Meai.ChatClientExtensions.GetService<TogetherClient>(chatClient);
-```
-
-## Full example with Together
-
-```csharp
-using Together;
-using Meai = Microsoft.Extensions.AI;
-
-var client = new TogetherClient(apiKey);
-
-// Must use Meai prefix — Together has its own IChatClient
-Meai.IChatClient chatClient = client.AsChatClient("meta-llama/Llama-3.3-70B-Instruct-Turbo");
-
+Meai.IChatClient chatClient = /* provider */;
 var response = await chatClient.GetResponseAsync(
     [new Meai.ChatMessage(Meai.ChatRole.User, "Hello!")],
-    new Meai.ChatOptions { ModelId = "meta-llama/Llama-3.3-70B-Instruct-Turbo" });
-Console.WriteLine(response);
+    new Meai.ChatOptions { ModelId = "provider-model" });
 ```
 
-## Full example with IEmbeddingGenerator
-
-The same pattern applies to `IEmbeddingGenerator`:
+## Example: Upstage
 
 ```csharp
-using Cohere;
+using Upstage;
 using Meai = Microsoft.Extensions.AI;
 
-var client = new CohereClient(apiKey);
+Meai.IChatClient chatClient = new UpstageClient(apiKey);
 
-// Explicit interface reference
-Meai.IEmbeddingGenerator<string, Meai.Embedding<float>> generator =
-    client.AsEmbeddingGenerator("embed-english-v3.0");
-
-var metadata = Meai.EmbeddingGeneratorExtensions
-    .GetService<Meai.EmbeddingGeneratorMetadata>(generator);
+var response = await chatClient.GetResponseAsync(
+    [new Meai.ChatMessage(Meai.ChatRole.User, "Summarize this image.")],
+    new Meai.ChatOptions { ModelId = "solar-pro" });
 ```
 
-## SDKs without conflicts
-
-For SDKs without namespace conflicts, you can use `Microsoft.Extensions.AI` directly:
+## Example: Pinecone
 
 ```csharp
-using Microsoft.Extensions.AI;
+using Pinecone;
+using Meai = Microsoft.Extensions.AI;
 
-var client = new AnthropicClient(apiKey);
-IChatClient chatClient = client.AsChatClient("claude-sonnet-4-20250514");
+Meai.IEmbeddingGenerator<string, Meai.Embedding<float>> generator =
+    new PineconeClient(apiKey).Inference;
 
-var response = await chatClient.GetResponseAsync("Hello!");
+var embeddings = await generator.GenerateAsync(["Hello, world!"]);
 ```
+
+## When You Can Skip the Alias
+
+You usually do **not** need the alias for SDKs such as:
+
+- `Anthropic`
+- `AI21`
+- `AssemblyAI`
+- `Cartesia`
+- `Deepgram`
+- `Gladia`
+- `Google.Gemini`
+- `HuggingFace`
+- `Jina`
+- `Nomic`
+- `Ollama`
+- `RevAI`
+- `SarvamAI`
+- `Speechmatics`
+- `TwelveLabs`
+- `VoyageAI`
+
+If you prefer, you can also avoid aliases by fully qualifying the MEAI types instead of importing them.

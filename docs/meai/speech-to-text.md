@@ -1,87 +1,99 @@
-# ISpeechToTextClient Feature Matrix
+# ISpeechToTextClient Coverage
 
-The `ISpeechToTextClient` interface provides a unified API for speech-to-text transcription across 6 providers.
+There are currently **10** direct `ISpeechToTextClient` implementations in the tryAGI SDKs.
 
-## Feature comparison
+## Capability Matrix
 
-| Feature | Reka | ElevenLabs | AssemblyAI | Deepgram | Gladia | Cartesia |
-|---------|:-:|:-:|:-:|:-:|:-:|:-:|
-| File transcription | Y | Y | Y | -[^2] | Y | Y |
-| URL transcription | Y | - | Y | Y | - | - |
-| Streaming | -[^1] | Y | - | Y | - | - |
-| Translation | Y | - | - | - | - | - |
-| Timestamps | Y | Y | Y | Y | Y | Y |
-| Languages | 20+ | 29 | 100+ | 30+ | 100+ | 115+ |
+| SDK | File transcription | URL transcription | `GetStreamingTextAsync()` | Translation | Timestamps | Notes |
+|-----|:---:|:---:|:---:|:---:|:---:|-------|
+| Reka | Y | Y | ~ | Y | Y | Stream or URL input; translation supported |
+| ElevenLabs | Y | - | ~ | - | Y | Realtime WebSocket exists outside the current MEAI adapter |
+| AssemblyAI | Y | Y* | ~ | - | Y | Upload + poll flow |
+| Deepgram | - | Y | Y | - | Y | URL-based batch transcription plus true realtime WebSocket streaming |
+| Gladia | Y | Y* | ~ | Y | Y | URL and translation via `RawRepresentationFactory` |
+| Cartesia | Y | - | ~ | - | Y | Synchronous STT with word timestamps |
+| FishAudio | Y | - | ~ | - | Y | Timestamped ASR plus speech-related tools |
+| RevAI | Y | Y | ~ | - | Y | Upload or URL submission, then poll for completion |
+| SarvamAI | Y | - | ~ | - | Y | 22+ Indian languages with provider-specific metadata |
+| Speechmatics | Y | - | ~ | - | Y | Batch transcription with polling |
 
-[^1]: Reka delegates to non-streaming due to API limitations.
-[^2]: Deepgram `GetTextAsync` requires a URL via `RawRepresentationFactory`; `GetStreamingTextAsync` accepts audio streams via WebSocket.
+`~` means the MEAI streaming method exists but returns the final transcript after processing completes, not true incremental recognition updates.
 
-## Universal code example
+`Y*` means the URL path is exposed through `RawRepresentationFactory`, not a dedicated MEAI option.
+
+## Universal Usage
 
 ```csharp
 using Microsoft.Extensions.AI;
 
 ISpeechToTextClient client = /* any provider */;
 
-// Transcribe an audio file
-await using var stream = File.OpenRead("audio.mp3");
-var result = await client.GetTextAsync(stream);
-Console.WriteLine(result.Text);
+await using var audioStream = File.OpenRead("audio.mp3");
+var response = await client.GetTextAsync(audioStream);
+
+Console.WriteLine(response.Text);
 ```
 
-## Provider-specific initialization
+## Initialization Patterns
 
-=== "ElevenLabs"
+### Standard direct SDK
 
-    ```csharp
-    ISpeechToTextClient client = new ElevenLabsClient(apiKey)
-        .AsSpeechToTextClient();
-    ```
+```csharp
+using AssemblyAI;
+using Microsoft.Extensions.AI;
 
-=== "AssemblyAI"
+ISpeechToTextClient client = new AssemblyAIClient(apiKey);
+```
 
-    ```csharp
-    ISpeechToTextClient client = new AssemblyAiClient(apiKey)
-        .AsSpeechToTextClient();
-    ```
+### Deepgram realtime streaming
 
-=== "Reka"
+```csharp
+using Deepgram;
+using Microsoft.Extensions.AI;
 
-    ```csharp
-    ISpeechToTextClient client = new RekaClient(apiKey)
-        .AsSpeechToTextClient();
-    ```
+ISpeechToTextClient client = new DeepgramClient(apiKey);
 
-=== "Deepgram"
+await using var audioStream = File.OpenRead("audio.wav");
+await foreach (var update in client.GetStreamingTextAsync(audioStream))
+{
+    Console.Write(update.Text);
+}
+```
 
-    ```csharp
-    // Direct cast — DeepgramClient implements ISpeechToTextClient
-    // GetTextAsync requires audio URL via RawRepresentationFactory
-    // GetStreamingTextAsync accepts audio streams via WebSocket
-    ISpeechToTextClient client = new DeepgramClient(apiKey);
-    ```
+### URL-based batch transcription
 
-=== "Gladia"
+```csharp
+using Microsoft.Extensions.AI;
+using RevAI;
 
-    ```csharp
-    // Direct cast — GladiaClient implements ISpeechToTextClient
-    ISpeechToTextClient client = new GladiaClient(apiKey);
-    ```
+ISpeechToTextClient client = new RevAIClient(apiKey);
 
-=== "Cartesia"
+var response = await client.GetTextAsync(
+    Stream.Null,
+    new SpeechToTextOptions
+    {
+        RawRepresentationFactory = _ => new SubmitTranscriptionJobRequest
+        {
+            MediaUrl = "https://example.com/meeting.mp3",
+        },
+    });
+```
 
-    ```csharp
-    // Direct cast — CartesiaClient implements ISpeechToTextClient
-    ISpeechToTextClient client = new CartesiaClient(apiKey);
-    ```
+## Streaming Guidance
 
-## Per-SDK documentation
+- `Deepgram` is the only current adapter in this group with truly incremental MEAI streaming.
+- `ElevenLabs`, `Reka`, `RevAI`, `SarvamAI`, `Speechmatics`, `FishAudio`, `AssemblyAI`, `Cartesia`, and `Gladia` all expose `GetStreamingTextAsync()`, but the current adapters yield the final transcript after the provider finishes processing.
+- If you need provider-native realtime features such as interim hypotheses, diarization events, or richer WebSocket controls, use the provider SDK directly in addition to or instead of the MEAI abstraction.
 
-| SDK | Documentation |
-|-----|--------------|
-| Reka | [tryagi.github.io/Reka/guides/meai/](https://tryagi.github.io/Reka/guides/meai/) |
-| ElevenLabs | [tryagi.github.io/ElevenLabs/guides/meai/](https://tryagi.github.io/ElevenLabs/guides/meai/) |
-| AssemblyAI | [tryagi.github.io/AssemblyAI/guides/meai/](https://tryagi.github.io/AssemblyAI/guides/meai/) |
-| Deepgram | [tryagi.github.io/Deepgram/guides/meai/](https://tryagi.github.io/Deepgram/guides/meai/) |
-| Gladia | [tryagi.github.io/Gladia/guides/meai/](https://tryagi.github.io/Gladia/guides/meai/) |
-| Cartesia | [tryagi.github.io/Cartesia/guides/meai/](https://tryagi.github.io/Cartesia/guides/meai/) |
+## SDK Guides
+
+- [Reka](https://tryagi.github.io/Reka/guides/meai/)
+- [ElevenLabs](https://tryagi.github.io/ElevenLabs/guides/meai/)
+- [AssemblyAI](https://tryagi.github.io/AssemblyAI/guides/meai/)
+- [Deepgram](https://tryagi.github.io/Deepgram/guides/meai/)
+- [Gladia](https://tryagi.github.io/Gladia/guides/meai/)
+- [Cartesia](https://tryagi.github.io/Cartesia/guides/meai/)
+- [FishAudio](https://tryagi.github.io/FishAudio/guides/meai/)
+- [RevAI](https://tryagi.github.io/RevAI/guides/meai/)
+- [SarvamAI](https://tryagi.github.io/SarvamAI/guides/meai/)
+- [Speechmatics](https://tryagi.github.io/Speechmatics/guides/meai/)

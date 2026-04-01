@@ -1,85 +1,165 @@
 # AIFunction Tools
 
-Some tryAGI SDKs expose `AIFunction` tool wrappers from [Microsoft.Extensions.AI](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai). These let you add specialized capabilities (search, translation, observability) to any `IChatClient` conversation.
-
-## Available Tool SDKs
-
-| SDK | Tools | Description |
-|-----|-------|-------------|
-| [DeepL](https://tryagi.github.io/DeepL/guides/meai/) | `AsTranslateTool()`, `AsRephraseTool()`, `AsTranslateDocumentTool()` | Translation, rephrasing, document translation |
-| [Exa](https://tryagi.github.io/Exa/guides/meai/) | `AsSearchTool()`, `AsGetContentsTool()`, `AsAnswerTool()` | AI-powered web search, content extraction, RAG answers |
-| [Serper](https://tryagi.github.io/Serper/guides/meai/) | `AsSearchTool()`, `AsNewsTool()` | Google Search and Google News |
-| [Tavily](https://tryagi.github.io/Tavily/guides/meai/) | `AsSearchTool()`, `AsExtractTool()` | Web search and content extraction |
-| [Phoenix](https://tryagi.github.io/Phoenix/guides/meai/) | `AsGetPromptTool()`, `AsListPromptsTool()`, `AsAnnotateSpanTool()`, `AsListTracesTool()` | Observability — prompt management, trace annotation |
+Many tryAGI SDKs expose `AIFunction` wrappers built on top of [Microsoft.Extensions.AI](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai). These wrappers let any `IChatClient` call provider-specific capabilities such as search, translation, prompt management, browser automation, moderation, or media generation.
 
 ## Usage Pattern
 
-All tool SDKs follow the same pattern — call an `As*Tool()` extension method on the client, then add the resulting `AIFunction` to `ChatOptions.Tools`:
+Every tool SDK follows the same pattern: create a client, call `As*Tool()`, and pass the result into `ChatOptions.Tools`.
 
 ```csharp
 using Microsoft.Extensions.AI;
-
-var options = new ChatOptions
-{
-    Tools = [client.AsSearchTool(numResults: 5)],
-};
-
-var response = await chatClient.GetResponseAsync(
-    "What are the latest developments in quantum computing?",
-    options);
-```
-
-## Combining Tools from Multiple SDKs
-
-The key advantage of the `AIFunction` pattern is composability — tools from different SDKs work together in a single conversation:
-
-```csharp
-using Microsoft.Extensions.AI;
-using DeepL;
-using Exa;
-using Serper;
-
-var deepLClient = new DeepLClient(apiKey: deeplKey);
-var exaClient = new ExaClient(apiKey: exaKey);
-var serperClient = new SerperClient(apiKey: serperKey);
 
 var options = new ChatOptions
 {
     Tools =
     [
-        // Search
-        exaClient.AsSearchTool(numResults: 5),
-        exaClient.AsGetContentsTool(),
-        serperClient.AsNewsTool(numResults: 5),
-
-        // Translation & writing
-        deepLClient.AsTranslateTool(),
-        deepLClient.AsRephraseTool(),
+        searchClient.AsSearchTool(),
+        translateClient.AsTranslateTool(),
     ],
 };
 
 var response = await chatClient.GetResponseAsync(
-    "Find recent EU AI regulations, translate key points to Japanese, " +
-    "and rephrase them in a business-friendly tone.",
+    "Find the latest updates and translate the summary to Japanese.",
     options);
 ```
 
+## Coverage By Category
+
+The current tool-wrapper inventory spans far beyond the original shortlist.
+
+### Search, Retrieval, Vector, and Memory
+
+- `Algolia`
+- `BraveSearch`
+- `Browserbase`
+- `Exa`
+- `GroundX`
+- `LlamaParse`
+- `Milvus`
+- `Nomic`
+- `Pinecone`
+- `Recombee`
+- `ScrapeGraphAI`
+- `Serper`
+- `Tavily`
+- `Vectara`
+- `Zep`
+
+Typical methods in this group include `AsSearchTool()`, `AsExtractTool()`, `AsRerankTool()`, `AsSearchMemoryTool()`, `AsParseUrlTool()`, and `AsSearchVectorsTool()`.
+
+### Translation, Transcription, and Document/Media Processing
+
+- `Creatomate`
+- `DeepL`
+- `DId`
+- `FishAudio`
+- `HumeAI`
+- `KlingAI`
+- `LalalAI`
+- `Loudly`
+- `MagicHour`
+- `Meshy`
+- `ModernMT`
+- `Murf`
+- `Nanonets`
+- `Photoroom`
+- `Picsart`
+- `Reducto`
+- `RevAI`
+- `SarvamAI`
+- `Shotstack`
+- `SiliconFlow`
+- `Speechmatics`
+- `Synthesia`
+- `Tavus`
+- `Upstage`
+- `WaveSpeedAI`
+
+Typical methods in this group include `AsTranslateTool()`, `AsTranscribeUrlTool()`, `AsTextToSpeechTool()`, `AsTextToVideoTool()`, `AsGenerateImageTool()`, `AsDocumentParseTool()`, and `AsParseDocumentTool()`.
+
+### Agents, Prompts, Observability, and App Workflows
+
+- `Apify`
+- `Baseten`
+- `Botpress`
+- `Braintrust`
+- `CursorAgents`
+- `Dust`
+- `Gretel`
+- `HammingAI`
+- `Helicone`
+- `Humanloop`
+- `JasperAI`
+- `Julep`
+- `Martian`
+- `Novu`
+- `OpenRouter`
+- `Opik`
+- `Phoenix`
+- `Predibase`
+- `PromptLayer`
+- `RetellAI`
+- `Resend`
+- `Vapi`
+- `Vellum`
+- `Weave`
+- `Writesonic`
+
+Typical methods in this group include `AsCreateAgentTool()`, `AsGetPromptTool()`, `AsListTracesTool()`, `AsGetTotalCostTool()`, `AsExecutePromptTool()`, `AsCreateConversationTool()`, and `AsSendEmailTool()`.
+
+### Security, Moderation, Evaluation, Data, and Platform Ops
+
+- `Composio`
+- `CVAT`
+- `Dataloop`
+- `EdenAI`
+- `Greptile`
+- `Guardrails`
+- `Lakera`
+- `LabelStudio`
+- `ModerationAPI`
+- `NightfallAI`
+- `Nixtla`
+- `PredictionGuard`
+- `Roboflow`
+- `ScaleAI`
+- `Sightengine`
+
+Typical methods in this group include `AsExecuteToolTool()`, `AsValidateTool()`, `AsGuardTool()`, `AsModerateTextTool()`, `AsForecastTool()`, `AsObjectDetectionTool()`, and `AsGetBatchStatusTool()`.
+
+## Representative SDK Map
+
+This table is intentionally representative, not exhaustive. It shows the breadth of the current surface while keeping the page readable.
+
+| SDK | Representative methods | Best for |
+|-----|------------------------|----------|
+| [Tavily](https://tryagi.github.io/Tavily/guides/meai/) | `AsSearchTool()`, `AsExtractTool()` | Web search and page extraction |
+| [Exa](https://tryagi.github.io/Exa/guides/meai/) | `AsSearchTool()`, `AsGetContentsTool()`, `AsAnswerTool()` | Search + content fetch + answer generation |
+| [Serper](https://tryagi.github.io/Serper/guides/meai/) | `AsSearchTool()`, `AsNewsTool()` | Google-style search and news |
+| [Pinecone](https://tryagi.github.io/Pinecone/guides/meai/) | `AsEmbedTool()`, `AsRerankTool()`, `AsListIndexesTool()` | Embeddings, reranking, index discovery |
+| [Zep](https://tryagi.github.io/Zep/guides/meai/) | `AsAddMemoryTool()`, `AsSearchMemoryTool()`, `AsGetContextTool()` | Conversational memory |
+| [DeepL](https://tryagi.github.io/DeepL/guides/meai/) | `AsTranslateTool()`, `AsRephraseTool()`, `AsTranslateDocumentTool()` | Translation and rewriting |
+| [SarvamAI](https://tryagi.github.io/SarvamAI/guides/meai/) | `AsTranslateTool()`, `AsTransliterateTool()`, `AsDetectLanguageTool()` | Indian-language tooling |
+| [Upstage](https://tryagi.github.io/Upstage/guides/meai/) | `AsGroundednessCheckTool()`, `AsTranslateTool()`, `AsDocumentParseTool()` | Groundedness checks and document parsing |
+| [FishAudio](https://tryagi.github.io/FishAudio/guides/meai/) | `AsTextToSpeechTool()`, `AsListModelsTool()` | Speech synthesis and model inspection |
+| [KlingAI](https://tryagi.github.io/KlingAI/guides/meai/) | `AsTextToVideoTool()`, `AsImageToVideoTool()`, `AsImageGenerationTool()` | Video and image generation |
+| [Braintrust](https://tryagi.github.io/Braintrust/guides/meai/) | `AsListPromptsTool()`, `AsGetPromptTool()`, `AsListExperimentsTool()` | Prompt and experiment management |
+| [Phoenix](https://tryagi.github.io/Phoenix/guides/meai/) | `AsGetPromptTool()`, `AsListPromptsTool()`, `AsListTracesTool()` | LLM observability |
+| [Opik](https://tryagi.github.io/Opik/guides/meai/) | `AsCreateProjectTool()`, `AsCreateTraceTool()`, `AsCreateSpanTool()` | Projects, traces, and spans |
+| [CursorAgents](https://tryagi.github.io/CursorAgents/guides/meai/) | `AsCreateAgentTool()`, `AsListAgentsTool()`, `AsGetAgentTool()` | Agent lifecycle management |
+| [Vapi](https://tryagi.github.io/Vapi/guides/meai/) | `AsCreateAssistantTool()`, `AsListCallsTool()`, `AsListPhoneNumbersTool()` | Voice assistants and call operations |
+| [Resend](https://tryagi.github.io/Resend/guides/meai/) | `AsSendEmailTool()`, `AsListDomainsTool()`, `AsListTemplatesTool()` | Transactional email workflows |
+| [Composio](https://tryagi.github.io/Composio/guides/meai/) | `AsExecuteToolTool()`, `AsListToolsTool()`, `AsListConnectedAccountsTool()` | External app/tool execution |
+| [Guardrails](https://tryagi.github.io/Guardrails/guides/meai/) | `AsValidateTool()`, `AsListGuardsTool()`, `AsGetGuardTool()` | Output validation and policy checks |
+| [PredictionGuard](https://tryagi.github.io/PredictionGuard/guides/meai/) | `AsFactualityCheckTool()`, `AsToxicityCheckTool()`, `AsPiiDetectionTool()` | Safety and evaluation |
+| [Reducto](https://tryagi.github.io/Reducto/guides/meai/) | `AsParseDocumentTool()`, `AsExtractDataTool()`, `AsClassifyDocumentTool()` | Document parsing and extraction |
+
 ## Installation
 
-Each SDK is independent — add only the ones you need:
+Each tool SDK is independent. Add only the packages you need, using the package ID shown in the provider's own guide page.
 
-```bash
-dotnet add package DeepL        # Translation tools
-dotnet add package Exa          # AI search tools
-dotnet add package Serper       # Google search tools
-dotnet add package tryAGI.Tavily   # Web search tools
-dotnet add package tryAGI.Phoenix  # Observability tools
-```
+## Notes
 
-## How It Works
-
-Under the hood, each `As*Tool()` method uses `AIFunctionFactory.Create()` from `Microsoft.Extensions.AI` to wrap an async method as an `AIFunction`. The LLM sees the tool's name, description, and JSON Schema parameters, and can invoke it during a conversation. The tool executes the SDK's API call and returns the result as structured text.
-
-!!! tip "See also"
-    - [DeepL Combined Tools Guide](https://tryagi.github.io/DeepL/guides/combined-tools/) — full examples of search + translation workflows
-    - [IChatClient Guide](chat-client.md) — how chat clients work with tools
+- Some SDKs combine direct MEAI interfaces and tool wrappers. Important examples are `FishAudio`, `Nomic`, `Pinecone`, `RevAI`, `SarvamAI`, `Speechmatics`, and `Upstage`.
+- Tool wrappers are especially useful when a provider is not itself an LLM but still exposes functionality that an `IChatClient` can orchestrate.
+- The dedicated SDK guide remains the best place to find the exact `As*Tool()` methods and parameter details for a given provider.

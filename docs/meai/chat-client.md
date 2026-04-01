@@ -1,132 +1,142 @@
-# IChatClient Feature Matrix
+# IChatClient Coverage
 
-The `IChatClient` interface provides a unified API for chat completions across all supported providers.
+`IChatClient` is the widest MEAI surface across the tryAGI SDKs. There are currently **14** direct chat implementations, plus **27** OpenAI-compatible factories via `tryAGI.OpenAI.CustomProviders`.
 
-## Feature comparison
+## Capability Matrix
 
-| Feature | Anthropic | Ollama | OpenAI | Gemini | Mistral | Cohere | Together | AI21 | Reka | HuggingFace | Writer |
-|---------|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Text | Y | Y | Y | Y | Y | Y | Y | Y | Y | Y | Y |
-| Streaming | Y | Y | Y | Y | Y | ~[^1] | Y | Y | Y | Y | Y |
-| Tool calling | Y | Y | Y | Y | Y | Y | Y | Y | Y[^2] | Y | Y |
-| Images | Y | Y | Y | Y | Y | - | - | - | Y | - | - |
-| PDFs | Y | - | - | - | - | - | - | - | Y | - | - |
-| Audio/Video | - | - | - | - | - | - | - | - | Y | - | - |
-| Thinking | Y | Y | - | Y | - | - | - | - | - | - | - |
-| Structured output | - | - | Y | - | - | - | - | - | Y | - | - |
-| Reasoning | - | - | - | - | - | - | Y | Y | - | - | - |
+| SDK | Streaming | Tool calling | Multimodal input | Reasoning / thinking | Structured output | Notes |
+|-----|-----------|--------------|------------------|----------------------|-------------------|-------|
+| Anthropic | Native | Y | Images, PDFs | Thinking | - | Reference implementation |
+| Ollama | Native | Y | Images | Thinking | - | Local-first models |
+| OpenAI | Native | Y | Images | - | JSON object + JSON schema | Also powers `CustomProviders` |
+| Google.Gemini | Native | Y | Images | Thinking | - | Thought-signature support in provider API |
+| Mistral | Native | Y | Images | - | - | Alias recommended |
+| Cohere | Simulated | Y | - | - | - | `GetStreamingResponseAsync()` emits the full response as one update |
+| Together | Native | Y | - | Reasoning | - | Alias recommended |
+| AI21 | Native | Y | - | Reasoning text | JSON object | Jamba chat models |
+| Reka | Native | Y | Images, audio, video, PDFs | - | JSON schema | Tool results are sent back as user text |
+| HuggingFace | Native | Y | Model-dependent | Model-dependent | - | Serverless feature set depends on backend model |
+| Writer | Native | Y | - | - | - | Alias recommended |
+| SarvamAI | Simulated | Y | - | `reasoning_effort`, `wiki_grounding` | - | SSE exists in the provider API, but the current adapter is post-hoc |
+| Upstage | Native | Y | Images | - | - | Also exposes groundedness, translation, and document tools |
+| Coze | Native | Y | - | Reasoning text | - | Requires `bot_id`; chat is bot-centric |
 
-[^1]: Cohere uses simulated streaming (not true SSE).
-[^2]: Reka sends tool results as user text due to API limitations.
-
-## Universal code example
-
-The power of MEAI is that this code works identically across all providers:
-
-```csharp
-using Microsoft.Extensions.AI;
-
-IChatClient client = /* any provider */;
-
-// Simple text completion
-var response = await client.GetResponseAsync("Explain quantum computing briefly.");
-Console.WriteLine(response);
-
-// Streaming
-await foreach (var update in client.GetStreamingResponseAsync("Tell me a story."))
-{
-    Console.Write(update.Text);
-}
-```
-
-## Provider-specific initialization
-
-=== "Anthropic"
-
-    ```csharp
-    IChatClient client = new AnthropicClient(apiKey)
-        .AsChatClient("claude-sonnet-4-20250514");
-    ```
-
-=== "OpenAI"
-
-    ```csharp
-    // Note: namespace conflict — use Meai alias if needed
-    IChatClient client = new OpenAiClient(apiKey)
-        .AsChatClient("gpt-4o");
-    ```
-
-=== "Ollama"
-
-    ```csharp
-    IChatClient client = new OllamaApiClient()
-        .AsChatClient("llama3.2");
-    ```
-
-=== "Google Gemini"
-
-    ```csharp
-    IChatClient client = new GoogleGeminiClient(apiKey)
-        .AsChatClient("gemini-2.0-flash");
-    ```
-
-=== "Mistral"
-
-    ```csharp
-    // Note: namespace conflict — use Meai alias
-    using Meai = Microsoft.Extensions.AI;
-    Meai.IChatClient client = new MistralClient(apiKey)
-        .AsChatClient("mistral-large-latest");
-    ```
-
-## Tool calling
-
-All `IChatClient` implementations support function/tool calling via MEAI's `AIFunction` abstraction:
+## Universal Usage
 
 ```csharp
 using Microsoft.Extensions.AI;
 
-// Define tools using CSharpToJsonSchema
-[GenerateJsonSchema]
-public interface IMyTools
-{
-    [Description("Gets the current weather for a location")]
-    string GetWeather(string city);
-}
-
-// Use with any IChatClient
-var tools = new MyToolsService().AsTools();
-var options = new ChatOptions { Tools = tools };
+IChatClient client = /* any supported provider */;
 
 var response = await client.GetResponseAsync(
-    "What's the weather in Tokyo?",
-    options);
+    [new ChatMessage(ChatRole.User, "Explain vector databases in two sentences.")],
+    new ChatOptions { ModelId = "provider-specific-model" });
+
+Console.WriteLine(response.Text);
 ```
 
-## Provider-specific initialization (continued)
+## Initialization Patterns
 
-=== "Writer"
+### Standard direct SDK
 
-    ```csharp
-    // Note: namespace conflict — use Meai alias
-    using Meai = Microsoft.Extensions.AI;
-    Meai.IChatClient client = new WriterClient(apiKey);
-    ```
+```csharp
+using Anthropic;
+using Microsoft.Extensions.AI;
 
-## Per-SDK documentation
+IChatClient client = new AnthropicClient(apiKey);
+```
 
-Each SDK has a detailed MEAI guide with provider-specific examples:
+### Alias-sensitive SDK
 
-| SDK | Documentation |
-|-----|--------------|
-| Anthropic | [tryagi.github.io/Anthropic/guides/meai/](https://tryagi.github.io/Anthropic/guides/meai/) |
-| Ollama | [tryagi.github.io/Ollama/guides/meai/](https://tryagi.github.io/Ollama/guides/meai/) |
-| OpenAI | [tryagi.github.io/OpenAI/guides/meai/](https://tryagi.github.io/OpenAI/guides/meai/) |
-| Google.Gemini | [tryagi.github.io/Google_Generative_AI/guides/meai/](https://tryagi.github.io/Google_Generative_AI/guides/meai/) |
-| Mistral | [tryagi.github.io/Mistral/guides/meai/](https://tryagi.github.io/Mistral/guides/meai/) |
-| Cohere | [tryagi.github.io/Cohere/guides/meai/](https://tryagi.github.io/Cohere/guides/meai/) |
-| Together | [tryagi.github.io/Together/guides/meai/](https://tryagi.github.io/Together/guides/meai/) |
-| AI21 | [tryagi.github.io/AI21/guides/meai/](https://tryagi.github.io/AI21/guides/meai/) |
-| Reka | [tryagi.github.io/Reka/guides/meai/](https://tryagi.github.io/Reka/guides/meai/) |
-| HuggingFace | [tryagi.github.io/HuggingFace/guides/meai/](https://tryagi.github.io/HuggingFace/guides/meai/) |
-| Writer | [tryagi.github.io/Writer/guides/meai/](https://tryagi.github.io/Writer/guides/meai/) |
+```csharp
+using Upstage;
+using Meai = Microsoft.Extensions.AI;
+
+Meai.IChatClient client = new UpstageClient(apiKey);
+```
+
+### Bot-centric SDK
+
+```csharp
+using Coze;
+using Microsoft.Extensions.AI;
+
+IChatClient client = new CozeClient(apiKey)
+    .WithBotId("your-bot-id")
+    .WithUserId("demo-user");
+```
+
+`Coze` also accepts `bot_id`, `user_id`, and `conversation_id` through `ChatOptions.AdditionalProperties`.
+
+### OpenAI-compatible provider
+
+```csharp
+using Microsoft.Extensions.AI;
+using tryAGI.OpenAI;
+
+IChatClient client = CustomProviders.Groq(apiKey);
+
+var response = await client.GetResponseAsync(
+    "Hello!",
+    new ChatOptions { ModelId = "llama-3.3-70b-versatile" });
+```
+
+## Tool Calling Pattern
+
+All current `IChatClient` implementations support MEAI tool calling:
+
+```csharp
+using CSharpToJsonSchema;
+using Microsoft.Extensions.AI;
+
+[GenerateJsonSchema]
+public interface IWeatherTools
+{
+    [Description("Gets the current weather for a location.")]
+    string GetWeather([Description("The city name")] string city);
+}
+
+IChatClient client = /* any supported provider */;
+
+var options = new ChatOptions
+{
+    ModelId = "provider-specific-model",
+    Tools = new WeatherToolsService().AsTools().AsAITools(),
+};
+
+var response = await client.GetResponseAsync("What's the weather in Tokyo?", options);
+```
+
+## Structured Output
+
+Structured output currently exists in the direct adapters for:
+
+- `OpenAI`: JSON object and JSON schema output
+- `AI21`: JSON object output
+- `Reka`: JSON schema output
+
+## Multimodal Notes
+
+- `Anthropic` supports text, images, and PDFs.
+- `OpenAI`, `Google.Gemini`, `Mistral`, `Ollama`, and `Upstage` support image input.
+- `Reka` is the broadest direct multimodal adapter and accepts images, audio, video, and PDF URLs.
+- `Coze`, `Writer`, `SarvamAI`, `Together`, and `AI21` are currently text-first in their MEAI adapters.
+
+## SDK Guides
+
+Per-provider details live in the SDK docs:
+
+- [Anthropic](https://tryagi.github.io/Anthropic/guides/meai/)
+- [Ollama](https://tryagi.github.io/Ollama/guides/meai/)
+- [OpenAI](https://tryagi.github.io/OpenAI/guides/meai/)
+- [Google.Gemini](https://tryagi.github.io/Google_Generative_AI/guides/meai/)
+- [Mistral](https://tryagi.github.io/Mistral/guides/meai/)
+- [Cohere](https://tryagi.github.io/Cohere/guides/meai/)
+- [Together](https://tryagi.github.io/Together/guides/meai/)
+- [AI21](https://tryagi.github.io/AI21/guides/meai/)
+- [Reka](https://tryagi.github.io/Reka/guides/meai/)
+- [HuggingFace](https://tryagi.github.io/HuggingFace/guides/meai/)
+- [Writer](https://tryagi.github.io/Writer/guides/meai/)
+- [SarvamAI](https://tryagi.github.io/SarvamAI/guides/meai/)
+- [Upstage](https://tryagi.github.io/Upstage/guides/meai/)
+- [Coze repository](https://github.com/tryAGI/Coze)
