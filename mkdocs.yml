@@ -18,6 +18,8 @@ nav:
   - CustomProviders: meai/custom-providers.md
   - AIFunction Tools: meai/aifunction-tools.md
   - Namespace Conflicts: meai/namespace-conflict.md
+- Realtime Avatars:
+  - Overview: realtime-avatars/index.md
 - SDK Catalog: sdks/index.md
 
 theme:
