@@ -10,6 +10,7 @@ tryAGI provides a unified `IRealtimeAvatarClient` abstraction for interactive av
 | [Simli](https://simli.com/) | `tryAGI.Simli` | WebSocket + WebRTC | Audio (PCM16) | Video + Audio |
 | [Anam](https://anam.ai/) | `tryAGI.Anam` | REST + WebRTC | Text | Video + Audio |
 | [AvatarTalk](https://avatartalk.ai/) | `tryAGI.AvatarTalk` | REST + WebSocket | Text | Video (MP4) |
+| [Pika](https://pika.art/) | `tryAGI.Pika` | REST (meeting bot) | Text | Meeting video (30 FPS) |
 
 ## Quick Start -- D-ID
 
@@ -129,6 +130,38 @@ await foreach (var evt in ws.ReceiveEventsAsync())
 }
 ```
 
+## Quick Start -- Pika
+
+Pika uses a meeting-bot approach: an AI avatar joins a video call (Google Meet, Zoom, etc.) and participates in real time.
+
+### Installation
+
+```bash
+dotnet add package tryAGI.Pika
+```
+
+### Join a Meeting with an AI Avatar
+
+```csharp
+using Pika;
+
+var client = new PikaClient(devKey);
+
+// Check balance
+var balance = await client.Developer.GetBalanceAsync();
+
+// Join a Google Meet with an AI avatar
+var session = await client.Sessions.CreateMeetingSessionAsync(
+    meetUrl: "https://meet.google.com/abc-defg-hij",
+    botName: "AI Assistant",
+    platform: CreateMeetingSessionRequestPlatform.GoogleMeet,
+    // image and voiceId parameters
+);
+
+// Poll until ready
+var status = await client.Sessions.GetSessionStatusAsync(session.SessionId);
+```
+
 ## The `IRealtimeAvatarClient` Interface
 
 All adapters implement a common interface for provider-agnostic code:
@@ -161,6 +194,7 @@ Not all providers support both text and audio input:
 |----------|-----------------|-------------------|---------------------------|---------------------------|
 | D-ID | Yes | No (text only) | Yes (WebRTC) | Yes (WebRTC) |
 | Simli | No (audio only) | Yes | Via WebRTC* | Via WebRTC* |
+| Pika | Yes | No (text only) | Meeting video | Meeting audio |
 
 *Simli delivers video/audio over WebRTC tracks. The WebSocket client handles signaling and audio input; a WebRTC peer connection is needed to receive the output streams.
 
@@ -174,16 +208,16 @@ Not all providers support both text and audio input:
 +----------+----------+
            |
     +------+------+
-    |             |
-+---v---+   +---v---+
-| D-ID  |   | Simli |   ... more providers
-|Adapter|   |Adapter|
-+---+---+   +---+---+
-    |           |
-+---v---+   +--v----+
-|WebRTC |   |  WS + |
-|SIPSor.|   | WebRTC|
-+-------+   +-------+
+    |             |            |
++---v---+   +---v---+   +---v---+
+| D-ID  |   | Simli |   | Pika  |  ... more providers
+|Adapter|   |Adapter|   |Adapter|
++---+---+   +---+---+   +---+---+
+    |           |            |
++---v---+   +--v----+   +--v----+
+|WebRTC |   |  WS + |   | REST  |
+|SIPSor.|   | WebRTC|   |(mtg.) |
++-------+   +-------+   +-------+
 ```
 
 ## WebRTC in .NET
@@ -205,3 +239,4 @@ Video frames arrive as encoded H.264 or VP8 data. Decoding requires FFmpeg or pl
 | [Simli](https://github.com/tryAGI/Simli) | `dotnet add package tryAGI.Simli` | Real-time avatar with WebRTC + WebSocket |
 | [Anam](https://github.com/tryAGI/Anam) | `dotnet add package tryAGI.Anam` | Ultra-low-latency avatars (180ms) |
 | [AvatarTalk](https://github.com/tryAGI/AvatarTalk) | `dotnet add package tryAGI.AvatarTalk` | 13 avatars, 16 languages, WebSocket streaming |
+| [Pika](https://github.com/tryAGI/Pika) | `dotnet add package tryAGI.Pika` | Real-time AI avatars for video meetings, voice cloning |

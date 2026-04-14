@@ -56,6 +56,7 @@
 | Descript | AI video/audio editing, import, export | [tryAGI.Descript](https://www.nuget.org/packages/tryAGI.Descript) | [GitHub](https://github.com/tryAGI/Descript) | [Docs](https://tryagi.github.io/Descript/) | - |
 | Creatomate | Programmatic video/image rendering with templates | [tryAGI.Creatomate](https://www.nuget.org/packages/tryAGI.Creatomate) | [GitHub](https://github.com/tryAGI/Creatomate) | [Docs](https://tryagi.github.io/Creatomate/) | `AIFunction` tools |
 | MagicHour | AI video: face swap, lip sync, text/image-to-video | [tryAGI.MagicHour](https://www.nuget.org/packages/tryAGI.MagicHour) | [GitHub](https://github.com/tryAGI/MagicHour) | [Docs](https://tryagi.github.io/MagicHour/) | `AIFunction` tools |
+| Pika | Real-time AI avatars for video meetings, voice cloning | [tryAGI.Pika](https://www.nuget.org/packages/tryAGI.Pika) | [GitHub](https://github.com/tryAGI/Pika) | [Docs](https://tryagi.github.io/Pika/) | `AIFunction` tools |
 
 ## 3D Generation
 
