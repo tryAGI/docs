@@ -210,6 +210,10 @@ body {
   .md-sidebar__scrollwrap {
     padding-inline: 0.35rem;
   }
+
+  .md-sidebar--primary:has(.md-nav--primary > .md-nav__list > .md-nav__item--active:not(.md-nav__item--nested)) {
+    display: none !important;
+  }
 }
 
 @media screen and (max-width: 76.1875em) {
