@@ -141,29 +141,50 @@ body {
 }
 
 .md-tabs {
-  background: var(--docs-bg);
+  background: color-mix(in srgb, var(--docs-bg) 94%, var(--docs-bg-elevated));
   border-bottom: 1px solid var(--docs-border);
 }
 
 .md-tabs__list {
-  gap: 0.25rem;
+  gap: 1.25rem;
   margin: 0;
 }
 
 .md-tabs__link {
+  position: relative;
   margin-top: 0;
-  padding: 0.65rem 0.75rem;
-  border-radius: var(--docs-radius);
+  padding: 0.9rem 0 0.82rem;
+  border-radius: 0;
+  background: transparent !important;
   color: var(--docs-muted);
   opacity: 1;
-  transition: color 160ms ease, background-color 160ms ease;
+  transition: color 160ms ease;
+}
+
+.md-tabs__link::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: var(--docs-accent);
+  opacity: 0;
+  transform: scaleX(0.55);
+  transform-origin: center;
+  transition: opacity 160ms ease, transform 160ms ease;
 }
 
 .md-tabs__link:is(:hover, :focus-visible),
 .md-tabs__item--active .md-tabs__link,
 .md-tabs__link--active {
   color: var(--docs-text);
-  background: var(--docs-bg-muted);
+}
+
+.md-tabs__item--active .md-tabs__link::after,
+.md-tabs__link--active::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 .md-main,
@@ -199,56 +220,65 @@ body {
 
 .md-nav--primary,
 .md-sidebar--secondary .md-nav--secondary {
-  padding: 0.55rem;
-  border: 1px solid var(--docs-border);
-  border-radius: var(--docs-radius);
-  background: var(--docs-bg-elevated);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   box-shadow: none;
 }
 
 .md-nav__title {
-  padding: 0.45rem 0.65rem 0.65rem;
-  border-radius: var(--docs-radius);
+  padding: 0.15rem 0 0.7rem;
+  border-radius: 0;
+  background: transparent;
   color: var(--docs-muted);
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .md-nav__link {
-  padding: 0.45rem 0.65rem;
-  border-radius: var(--docs-radius);
-  transition: background-color 160ms ease, color 160ms ease;
+  padding: 0.38rem 0;
+  border-radius: 0;
+  border-left: 2px solid transparent;
+  color: var(--docs-muted);
+  transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
 }
 
 .md-nav__link:is(:hover, :focus-visible) {
   color: var(--docs-text);
-  background: var(--docs-bg-muted);
+  background: transparent;
 }
 
 .md-nav__link--active,
 .md-nav__item .md-nav__link--active {
   color: var(--docs-accent-strong);
-  background: var(--docs-accent-soft);
+  background: transparent;
+  border-left-color: var(--docs-accent);
   font-weight: 700;
 }
 
+.md-nav__item .md-nav .md-nav__link {
+  padding-left: 0.7rem;
+}
+
 .md-sidebar--secondary .md-nav__list {
-  margin-left: 0.25rem;
-  padding-left: 0.5rem;
+  margin-left: 0;
+  padding-left: 0.65rem;
   border-left: 1px solid var(--docs-border);
 }
 
 .md-sidebar--secondary .md-nav__link {
+  padding-left: 0.7rem;
   color: var(--docs-muted);
   background: transparent;
 }
 
 .md-sidebar--secondary .md-nav__link--active,
 .md-sidebar--secondary .md-nav__item .md-nav__link--active {
-  color: var(--docs-text);
-  box-shadow: inset 2px 0 0 var(--docs-accent);
+  color: var(--docs-accent-strong);
+  box-shadow: none;
 }
 
 .md-top {
