@@ -30,9 +30,7 @@ features:
   - search.highlight
   - search.suggest
   - toc.follow
-font:
-  text: Space Grotesk
-  code: IBM Plex Mono
+font: false
 icon:
   logo: material/file-document
   repo: fontawesome/brands/github

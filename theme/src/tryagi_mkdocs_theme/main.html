@@ -4,3 +4,33 @@
   {{ super() }}
   <link rel="stylesheet" href="{{ 'assets/stylesheets/tryagi.css' | url }}">
 {% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script>
+    (function () {
+      function labelCopyForLlm() {
+        document.querySelectorAll(".copy-to-llm-left .button-text").forEach(function (label) {
+          label.textContent = "Copy for LLM";
+        });
+
+        document.querySelectorAll(".copy-to-llm-left").forEach(function (button) {
+          button.title = "Copy page for LLM";
+          button.setAttribute("aria-label", "Copy page content to clipboard for LLM usage");
+        });
+      }
+
+      function scheduleLabelUpdate() {
+        window.setTimeout(labelCopyForLlm, 0);
+      }
+
+      if (typeof document$ !== "undefined") {
+        document$.subscribe(scheduleLabelUpdate);
+      } else if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", scheduleLabelUpdate);
+      } else {
+        scheduleLabelUpdate();
+      }
+    })();
+  </script>
+{% endblock %}
