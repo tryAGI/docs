@@ -2,6 +2,8 @@
 
 **120+ SDKs** for AI/ML services, all auto-generated from OpenAPI specs via [AutoSDK](https://github.com/HavenDV/AutoSDK). Each SDK targets `net10.0`, supports AOT/trimming, and is published to NuGet.
 
+For generator-quality work, use the [Official SDK Comparison Inventory](official-sdk-comparison.md) to find first-party SDKs and prioritize AutoSDK gap analysis.
+
 ## LLM / Text Generation
 
 | SDK | Description | NuGet | GitHub | Docs | MEAI |

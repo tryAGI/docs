@@ -26,6 +26,10 @@ tryAGI is an open-source organization building production-ready .NET SDKs for AI
 
     Complete listing of all SDKs organized by category, with NuGet, GitHub, and docs links
 
+- :material-source-branch-check: **[Official SDK Comparison](sdks/official-sdk-comparison.md)**
+
+    First-party SDK inventory for benchmarking AutoSDK output and filing focused generator-quality issues
+
 - :material-video-account: **[Realtime Avatars](realtime-avatars/index.md)**
 
     Unified `IRealtimeAvatarClient` interface for interactive avatar streaming with D-ID, Simli, Anam, and AvatarTalk

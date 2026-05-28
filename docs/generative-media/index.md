@@ -5,6 +5,9 @@ Which AI providers can you use **for free via API**? This guide compares free ti
 !!! tip "Last updated: March 2026"
     Free tier details change frequently. Check each provider's pricing page for the latest information.
 
+!!! info "Building one smart free-first outlet?"
+    Start with the focused guide: [Free-First LLM Outlet](free-first-outlet.md). It separates recurring free tiers from signup credits and proposes a practical fallback ladder for `CustomProviders`.
+
 ---
 
 ## LLM / Text Generation

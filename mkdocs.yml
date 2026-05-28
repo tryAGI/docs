@@ -20,7 +20,9 @@ nav:
   - Namespace Conflicts: meai/namespace-conflict.md
 - Realtime Avatars:
   - Overview: realtime-avatars/index.md
-- SDK Catalog: sdks/index.md
+- SDKs:
+  - Catalog: sdks/index.md
+  - Official SDK Comparison: sdks/official-sdk-comparison.md
 
 theme:
   name: tryagi

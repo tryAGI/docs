@@ -7,7 +7,8 @@ Centralized documentation hub for the [tryAGI](https://github.com/tryAGI) .NET A
 ## What's here
 
 - **MEAI Integration** — Feature matrices and usage guides for Microsoft.Extensions.AI across all SDKs
-- **SDK Catalog** — Full listing of 40+ SDKs with links to NuGet, GitHub, and per-SDK docs
+- **SDK Catalog** — Full listing of generated SDKs with links to NuGet, GitHub, and per-SDK docs
+- **Official SDK Comparison** — First-party SDK/client inventory for benchmarking AutoSDK output and filing generator-quality issues
 - **Getting Started** — Ecosystem overview and decision guide for choosing the right SDK
 
 ## Local development
