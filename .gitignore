@@ -6,5 +6,6 @@ _site/
 docs/assets/
 
 # Local Python packaging artifacts
+theme/build/
 theme/src/*.egg-info/
 theme/src/**/__pycache__/
